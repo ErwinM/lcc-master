@@ -1,13 +1,15 @@
-int con = 3;
+int result = 0;
 
 int foo(int n) {
   int i;
-  i = n + con;
+  i = n + 4;
   return i;
 }
 
 int main() {
   int k;
   k = foo(2);
-  return k;
+  k++;
+  result = k;
+  return 0;
 }

@@ -1,6 +1,15 @@
 LCC retargeting thoughts
 ------------------------
 
+$ cd lcc
+$ mkdir build
+$ export BUILDDIR=./build
+$ make ./build/rcc
+$ build/rcc -target=x86/linux tst/8q.c
+
+
+
+
 function:
 
 branch is load pc with another value
@@ -27,6 +36,8 @@ I have opcode 2 and 3 still available so could use those for ld and st words per
 
 lets implement push / pop and see about getting the first program to execute on the simulator. => DONE
 
+A function call needs to push PC + 1 (PC points to the branch instruction!). I could do this with a seperate pushret instruction, but that costs me an instruction. it does save an instruction (addi Rx, 1, PC) per function call. And we will be calling functions like no body's business => WRONG, pushret would have to use an immediate (MDR) and store the result of a computation in mem (via MDR). this doesn't work in a store/load achitercure (note to self: it COULD work if there was a separate IMM register)..
+
 load/store addressing:
 - often the compiler does not know the required displacement (symbol!); these are not known before linking
 - we should use a conservative approach and only use instructions with limited displacement if we know the required displacement
@@ -37,3 +48,13 @@ load/store addressing:
 - lda can only load a 10b signed imm 512 bytes of displacement
 - an assembler macro will be used to load a higher imm in the base address
 - now how the F**K do I implement this in LCC...
+
+Problems to solve
+-----------------
+* loading a signed int to a register probably wont extend the sign in the register (which will be wider) at this point
+
+BP
+--
+LCC doesnt really require a base pointer since it can calculate offsets using the framesize
+However, my imm addressing modes only work of reg5 anyway...
+=> lets go with it for now

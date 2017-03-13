@@ -256,7 +256,7 @@ int range(Node p, int lo, int hi) {
 	switch (specific(p->op)) {
 	case ADDRF+P:
 	case ADDRL+P:
-    printf("range: offset: %d", s->x.offset);
+    //printf("range: offset: %d", s->x.offset);
     ck(s->x.offset >= lo && s->x.offset <= hi);
     break;
 	case CNST+I:  ck(s->u.c.v.i  >= lo && s->u.c.v.i  <= hi);
