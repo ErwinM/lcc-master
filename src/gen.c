@@ -176,6 +176,7 @@ static int getrule(Node p, int nt) {
 
 	assert(p);
 	rulenum = (*IR->x._rule)(p->x.state, nt);
+
 	if (!rulenum) {
 		fprint(stderr, "(%x->op=%s at %w is corrupt.)\n", p, opname(p->op), &src);
 		assert(0);

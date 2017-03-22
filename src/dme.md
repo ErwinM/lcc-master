@@ -266,17 +266,19 @@ static int double_ptr = 0;
   jaddr: ADDRGP2  "%a XX"
   addr: jaddr "%0"
 
-  base: ADDRGP2  "%a-9"
-  base: ADDRLP2  "%a-10"
-  base: ADDRFP2  "%a-11"
+  base: ADDRGP2  "%a[BASE]"
+  base: ADDRLP2  "%a[BASE]"
+  base: ADDRFP2  "%a[bp]"
 
   base: reg  "%0"
   addr: baddr "%0"
 
   baddr: reg "%0"
 
-  reg: base  "\tlda\t%c,%0>7\n" 1
+  reg: base  "\tlda\t%c,%0[BASE]\n" 1
 
+
+		reg: LSHI2(reg, conIR) "shl %c, %1, %0\n" 1
 
   stmt: ASGNI1(addr,reg)  "sb $%1,%0\n"  1
   stmt: ASGNU1(addr,reg)  "sb $%1,%0\n"  1
