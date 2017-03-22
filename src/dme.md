@@ -278,7 +278,9 @@ static int double_ptr = 0;
   reg: base  "\tlda\t%c,%0[BASE]\n" 1
 
 
-		reg: LSHI2(reg, conIR) "shl %c, %1, %0\n" 1
+	index: LSHI2(reg, conIR) "shl %c, %1, %0\n" 1
+
+	reg: INDIRI2(ADDP2(index, reg)) "ldwb %c, (%0, %1)\n" 1
 
   stmt: ASGNI1(addr,reg)  "sb $%1,%0\n"  1
   stmt: ASGNU1(addr,reg)  "sb $%1,%0\n"  1
