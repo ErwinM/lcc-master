@@ -236,6 +236,8 @@ static int double_ptr = 0;
 
   reg: con "\tldi\t%c, %0\n" 1
 
+	reg0:  CNSTI2  "r0"  range(a, 0, 0)
+	reg0:  CNSTU2  "r0"  range(a, 0, 0)
 
   conIR:  CNSTI2  "1"  range(a, 1, 1)
   conIR:  CNSTI2  "2"  range(a, 2, 2)
@@ -252,6 +254,7 @@ static int double_ptr = 0;
   conIR:  CNSTI2  "-4"  range(a, -4, -4)
   conIR:  CNSTI2  "-8"  range(a, -8, -8)
 
+	reg: reg0 "%0"
   con: conIR "%0"
 
 
@@ -362,7 +365,7 @@ static int double_ptr = 0;
 
   stmt: EQI2(reg,reg)  "beq $%0,$%1,%a\n"   1
   stmt: EQU2(reg,reg)  "beq $%0,$%1,%a\n"   1
-  stmt: GEI2(reg,reg)  "\tskip.gte %0, %1\n\tbr %a\n"   1
+  stmt: GEI2(reg,reg)  "\tskip.lt %0, %1\n\tbr %a\n"   1
   stmt: GEU2(reg,reg)  "bgeu $%0,$%1,%a\n"  1
   stmt: GTI2(reg,reg)  "bgt $%0,$%1,%a\n"   1
   stmt: GTU2(reg,reg)  "bgtu $%0,$%1,%a\n"  1
@@ -422,7 +425,7 @@ static void progbeg(int argc, char *argv[]) {
     //     longreg[R_L3] = mkreg("L3",R_L3,1,IREG);
 
     // Reg symbols
-    intreg[R0] = mkreg("r0",R0,1,IREG);
+    intreg[R0] = mkreg("xr0",R0,1,IREG);
     intreg[R1] = mkreg("r1",R1,1,IREG);
     intreg[R2] = mkreg("r2",R2,1,IREG);
     intreg[R3] = mkreg("r3",R3,1,IREG);
@@ -445,7 +448,9 @@ static void progbeg(int argc, char *argv[]) {
     print(";  temp boiler plate puts SP at 0x64 and branches to main\n");
     print("\tld16\tr1, 0x1ffe\n");
     print("\tmov\tsp, r1\n");
+    print("\taddi\tr1, pc, 2\n");
     print("\tbr\t_main\n");
+    print("\thlt\n");
     print("\n\n");
 /*
  * FIXME - enable this when we have a linker
@@ -503,14 +508,14 @@ static void target(Node p) {
     assert(p);
 
     switch (specific(p->op)) {
-    case CNST+I:
-    case CNST+U:
-    case CNST+P:
-      if (range(p, 0, 0) == 0) {
-        setreg(p, intreg[0]);
-        p->x.registered = 1;
-      }
-      break;
+    // case CNST+I:
+//     case CNST+U:
+//     case CNST+P:
+//       if (range(p, 0, 0) == 0) {
+//         setreg(p, intreg[0]);
+//         p->x.registered = 1;
+//       }
+//       break;
     case CALL+I:
     case CALL+U:
     case CALL+P:
@@ -529,11 +534,44 @@ static void target(Node p) {
 // for the result, make sure we don't clobber it here.
 // Shouldn't we clobber for 16-bit MUL/DIV?
 static void clobber(Node p) {
+  assert(p);
 
+	switch(specific(p->op)) {
+	case CALL+I:
+	case CALL+P:
+	case CALL+U:
+	// Would normally kill both, but if we're returning result
+	// in A we've already done a setreg on it so don't spill.
+		if (opsize(p->op > 2)) {
+			spill( (1<<R1) | (1<<R2) | (1<<R3) | (1<<R4), IREG, p);
+	  } else {
+			spill( (1<<R2) | (1<<R3) | (1<<R4), IREG, p);
+	  }
+	  break;
+	//case ASGN+B:
+	//case CALL+V:
+	//case ARG+B:
+	//// always spill both A & B
+	//    spill( (1<<R_B) | (1<<R_A) ,IREG,p);
+	//    break;
+	//case CALL+B:
+	//// I don't really understand this.  I want to show that
+	//// both A and B are killed, but if I spill A here I get the
+	//// spill assert as if A had been setreg'd - but I don't.
+	//    spill( (1<<R_B) , IREG , p);
+	//    break;
+	//case CVF+I:
+	//    // We've done setreg on A, kill B
+	//    spill( (1<<R_B) , IREG , p);
+	//    break;
+	default:
+	// spill everything for generic long operation.
+		if (opsize(p->op) > 2) {
+			spill((1<<R2) | (1<<R3) | (1<<R4),IREG,p);
+	  }
+	  break;
+	}
 }
-
-
-
 
 int isfloat8(Node p) {
         assert(p);

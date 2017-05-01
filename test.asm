@@ -3,25 +3,42 @@
 ;  temp boiler plate puts SP at 0x64 and branches to main
 	ld16	r1, 0x1ffe
 	mov	sp, r1
+	addi	r1, pc, 2
 	br	_main
+	hlt
 
 
-	.data 0x1000
-;	.global _result
-_result:
-	defw 0x0
-;	.global _foo
+;	.global _fib
 ;	.cseg
-_foo:
+_fib:
 	push	r1
 	push	bp
 	mov	bp, sp
 	ldi	r4, 2
 	sub	sp, sp, r4
 	ldw	r4,4(bp)
-	addi	r4,r4,4
+	ldi	r3, 2
+	skip.lt r4, r3
+	br L2
+	ldw	r1,4(bp)
+	la16	r4,L1 ;[via BASE][BASE]
+	br.r r4
+L2:
+	ldw	r4,4(bp)
+	subi	r4,r4,1
+	push	r4
+	addi	r1,pc,2
+	br	_fib ;XX
+	mov	r4,r1
 	stw	-2(bp),r4
-	ldw	r1,-2(bp)
+	ldw	r3,4(bp)
+	subi	r3,r3,2
+	push	r3
+	addi	r1,pc,2
+	br	_fib ;XX
+	mov	r4,r1
+	ldw	r3,-2(bp)
+	add	r1,r3,r4
 L1:
 	mov	sp, bp
 	pop	bp
@@ -34,20 +51,13 @@ _main:
 	mov	bp, sp
 	ldi	r4, 2
 	sub	sp, sp, r4
-	ldi	r4, 2
+	stw	-2(bp),r0
+	ldi	r4, 10
 	push	r4
-	addi	r1,pc,4
-	br	_foo ;XX
-	stw	-2(bp),r1
-	ldw	r4,-2(bp)
-	addi	r4,r4,1
-	stw	-2(bp),r4
-	la16	r4,_result ;[via BASE][BASE]
-	ldw	r3,-2(bp)
-	stw	r0(r4),r3
-	ldi	r0, 0
-	mov	r1,r0
-L2:
+	addi	r1,pc,2
+	br	_fib ;XX
+	mov	r4,r1
+L4:
 	mov	sp, bp
 	pop	bp
 	pop	pc
