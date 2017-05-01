@@ -1,0 +1,53 @@
+export fib
+segment text
+function fib type=int function(int) sclass=auto scope=GLOBAL flags=0 ref=2.000000 ncalls=2
+caller n type=int sclass=auto scope=PARAM flags=0 offset=0 ref=0.000000
+callee n type=int sclass=register scope=PARAM flags=0 offset=0 ref=3.500000
+blockbeg off=0
+blockbeg off=0
+blockend off=0
+blockend off=0
+ 2. ADDRFP4 n
+4. ADDRFP4 n
+3. INDIRI4 #4
+1' ASGNI4 #2 #3 4 4
+ 3. ADDRFP4 n
+2. INDIRI4 #3
+4. CNSTI4 2
+1' GEI4 #2 #4 2
+ 3. ADDRFP4 n
+2. INDIRI4 #3
+1' RETI4 #2
+ 2. ADDRGP4 1
+1' JUMPV #2
+ 2:
+ 4. ADDRFP4 n
+3. INDIRI4 #4
+5. CNSTI4 1
+2. SUBI4 #3 #5
+1' ARGI4 #2 4 4
+7. ADDRGP4 fib
+6' CALLI4 #7 {int function(int)}
+11. ADDRFP4 n
+10. INDIRI4 #11
+12. CNSTI4 2
+9. SUBI4 #10 #12
+8' ARGI4 #9 4 4
+14. ADDRGP4 fib
+13' CALLI4 #14 {int function(int)}
+16. ADDI4 #6 #13
+15' RETI4 #16
+ 1:
+maxoff=0
+export main
+function main type=int function(void) sclass=auto scope=GLOBAL flags=0 ref=0.000000 ncalls=1
+blockbeg off=0
+blockend off=0
+ 2. CNSTI4 10
+1' ARGI4 #2 4 4
+4. ADDRGP4 fib
+3' CALLI4 #4 {int function(int)}
+5' RETI4 #3
+ 4:
+maxoff=0
+progend

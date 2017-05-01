@@ -53,8 +53,16 @@ Problems to solve
 -----------------
 * loading a signed int to a register probably wont extend the sign in the register (which will be wider) at this point
 
+* arguments larger than a word are not handled properly (they cannot be pushed and need to be copied)
+
 BP
 --
 LCC doesnt really require a base pointer since it can calculate offsets using the framesize
 However, my imm addressing modes only work of reg5 anyway...
 => lets go with it for now
+
+ONCHIP Memory conventions
+-------------------------
+sp -> 1fff to start
+
+
