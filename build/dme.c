@@ -63,7 +63,7 @@ static int current_seg;
 
 static int double_ptr = 0;
 /*
-generated at Mon May  1 22:53:43 2017
+generated at Tue May  2 23:10:02 2017
 by $Id$
 */
 static void _kids(NODEPTR_TYPE, int, NODEPTR_TYPE[]);
@@ -73,47 +73,35 @@ static int _rule(void*, int);
 #define _stmt_NT 1
 #define _reg_NT 2
 #define _con_NT 3
-#define _reg0_NT 4
-#define _conIR_NT 5
-#define _acon_NT 6
-#define _laddr_NT 7
-#define _addr_NT 8
-#define _jaddr_NT 9
-#define _base_NT 10
-#define _baddr_NT 11
-#define _index_NT 12
+#define _conIR_NT 4
+#define _acon_NT 5
+#define _addr_NT 6
+#define _jaddr_NT 7
+#define _index_NT 8
 
 static char *_ntname[] = {
 	0,
 	"stmt",
 	"reg",
 	"con",
-	"reg0",
 	"conIR",
 	"acon",
-	"laddr",
 	"addr",
 	"jaddr",
-	"base",
-	"baddr",
 	"index",
 	0
 };
 
 struct _state {
-	short cost[13];
+	short cost[9];
 	struct {
 		unsigned int _stmt:6;
 		unsigned int _reg:7;
-		unsigned int _con:4;
-		unsigned int _reg0:2;
+		unsigned int _con:3;
 		unsigned int _conIR:4;
 		unsigned int _acon:1;
-		unsigned int _laddr:2;
 		unsigned int _addr:2;
 		unsigned int _jaddr:1;
-		unsigned int _base:3;
-		unsigned int _baddr:1;
 		unsigned int _index:1;
 	} rule;
 };
@@ -121,20 +109,14 @@ struct _state {
 static short _nts_0[] = { 0 };
 static short _nts_1[] = { _reg_NT, 0 };
 static short _nts_2[] = { _con_NT, 0 };
-static short _nts_3[] = { _reg0_NT, 0 };
-static short _nts_4[] = { _conIR_NT, 0 };
-static short _nts_5[] = { _laddr_NT, 0 };
-static short _nts_6[] = { _jaddr_NT, 0 };
-static short _nts_7[] = { _baddr_NT, 0 };
-static short _nts_8[] = { _base_NT, 0 };
-static short _nts_9[] = { _reg_NT, _conIR_NT, 0 };
-static short _nts_10[] = { _index_NT, _reg_NT, 0 };
-static short _nts_11[] = { _addr_NT, _reg_NT, 0 };
-static short _nts_12[] = { _laddr_NT, _reg_NT, 0 };
-static short _nts_13[] = { _baddr_NT, _reg_NT, 0 };
-static short _nts_14[] = { _addr_NT, 0 };
-static short _nts_15[] = { _reg_NT, _reg_NT, 0 };
-static short _nts_16[] = { _acon_NT, 0 };
+static short _nts_3[] = { _reg_NT, _con_NT, 0 };
+static short _nts_4[] = { _index_NT, _reg_NT, 0 };
+static short _nts_5[] = { _addr_NT, _reg_NT, 0 };
+static short _nts_6[] = { _reg_NT, _reg_NT, 0 };
+static short _nts_7[] = { _addr_NT, 0 };
+static short _nts_8[] = { _reg_NT, _conIR_NT, 0 };
+static short _nts_9[] = { _acon_NT, 0 };
+static short _nts_10[] = { _jaddr_NT, 0 };
 
 static short *_nts[] = {
 	0,	/* 0 */
@@ -173,72 +155,72 @@ static short *_nts[] = {
 	_nts_0,	/* 33 */
 	_nts_0,	/* 34 */
 	_nts_0,	/* 35 */
-	_nts_3,	/* 36 */
-	_nts_4,	/* 37 */
-	_nts_1,	/* 38 */
-	_nts_2,	/* 39 */
-	_nts_0,	/* 40 */
+	_nts_0,	/* 36 */
+	_nts_0,	/* 37 */
+	_nts_0,	/* 38 */
+	_nts_1,	/* 39 */
+	_nts_2,	/* 40 */
 	_nts_0,	/* 41 */
-	_nts_5,	/* 42 */
+	_nts_0,	/* 42 */
 	_nts_0,	/* 43 */
-	_nts_6,	/* 44 */
+	_nts_0,	/* 44 */
 	_nts_0,	/* 45 */
-	_nts_0,	/* 46 */
-	_nts_0,	/* 47 */
-	_nts_1,	/* 48 */
-	_nts_7,	/* 49 */
-	_nts_1,	/* 50 */
-	_nts_8,	/* 51 */
-	_nts_9,	/* 52 */
-	_nts_10,	/* 53 */
-	_nts_11,	/* 54 */
-	_nts_11,	/* 55 */
-	_nts_12,	/* 56 */
-	_nts_13,	/* 57 */
-	_nts_11,	/* 58 */
-	_nts_11,	/* 59 */
-	_nts_14,	/* 60 */
-	_nts_14,	/* 61 */
-	_nts_5,	/* 62 */
-	_nts_7,	/* 63 */
-	_nts_14,	/* 64 */
-	_nts_14,	/* 65 */
-	_nts_14,	/* 66 */
-	_nts_14,	/* 67 */
-	_nts_14,	/* 68 */
-	_nts_14,	/* 69 */
-	_nts_15,	/* 70 */
-	_nts_15,	/* 71 */
-	_nts_15,	/* 72 */
-	_nts_15,	/* 73 */
-	_nts_15,	/* 74 */
-	_nts_15,	/* 75 */
-	_nts_15,	/* 76 */
-	_nts_15,	/* 77 */
-	_nts_15,	/* 78 */
-	_nts_9,	/* 79 */
-	_nts_9,	/* 80 */
-	_nts_9,	/* 81 */
-	_nts_15,	/* 82 */
-	_nts_15,	/* 83 */
-	_nts_15,	/* 84 */
-	_nts_9,	/* 85 */
-	_nts_9,	/* 86 */
-	_nts_9,	/* 87 */
-	_nts_15,	/* 88 */
-	_nts_15,	/* 89 */
-	_nts_15,	/* 90 */
-	_nts_15,	/* 91 */
-	_nts_15,	/* 92 */
-	_nts_15,	/* 93 */
-	_nts_9,	/* 94 */
-	_nts_9,	/* 95 */
-	_nts_9,	/* 96 */
-	_nts_9,	/* 97 */
-	_nts_9,	/* 98 */
-	_nts_9,	/* 99 */
-	_nts_1,	/* 100 */
-	_nts_1,	/* 101 */
+	_nts_3,	/* 46 */
+	_nts_4,	/* 47 */
+	_nts_5,	/* 48 */
+	_nts_5,	/* 49 */
+	_nts_5,	/* 50 */
+	_nts_5,	/* 51 */
+	_nts_5,	/* 52 */
+	_nts_6,	/* 53 */
+	_nts_6,	/* 54 */
+	_nts_6,	/* 55 */
+	_nts_6,	/* 56 */
+	_nts_6,	/* 57 */
+	_nts_7,	/* 58 */
+	_nts_7,	/* 59 */
+	_nts_7,	/* 60 */
+	_nts_7,	/* 61 */
+	_nts_7,	/* 62 */
+	_nts_1,	/* 63 */
+	_nts_1,	/* 64 */
+	_nts_1,	/* 65 */
+	_nts_1,	/* 66 */
+	_nts_1,	/* 67 */
+	_nts_7,	/* 68 */
+	_nts_7,	/* 69 */
+	_nts_7,	/* 70 */
+	_nts_7,	/* 71 */
+	_nts_6,	/* 72 */
+	_nts_6,	/* 73 */
+	_nts_6,	/* 74 */
+	_nts_6,	/* 75 */
+	_nts_6,	/* 76 */
+	_nts_6,	/* 77 */
+	_nts_6,	/* 78 */
+	_nts_6,	/* 79 */
+	_nts_6,	/* 80 */
+	_nts_8,	/* 81 */
+	_nts_8,	/* 82 */
+	_nts_8,	/* 83 */
+	_nts_6,	/* 84 */
+	_nts_6,	/* 85 */
+	_nts_6,	/* 86 */
+	_nts_8,	/* 87 */
+	_nts_8,	/* 88 */
+	_nts_8,	/* 89 */
+	_nts_6,	/* 90 */
+	_nts_6,	/* 91 */
+	_nts_6,	/* 92 */
+	_nts_6,	/* 93 */
+	_nts_6,	/* 94 */
+	_nts_6,	/* 95 */
+	_nts_8,	/* 96 */
+	_nts_8,	/* 97 */
+	_nts_8,	/* 98 */
+	_nts_8,	/* 99 */
+	_nts_8,	/* 100 */
+	_nts_8,	/* 101 */
 	_nts_1,	/* 102 */
 	_nts_1,	/* 103 */
 	_nts_1,	/* 104 */
@@ -250,34 +232,36 @@ static short *_nts[] = {
 	_nts_1,	/* 110 */
 	_nts_1,	/* 111 */
 	_nts_1,	/* 112 */
-	_nts_0,	/* 113 */
-	_nts_16,	/* 114 */
-	_nts_1,	/* 115 */
-	_nts_15,	/* 116 */
-	_nts_15,	/* 117 */
-	_nts_15,	/* 118 */
-	_nts_15,	/* 119 */
-	_nts_15,	/* 120 */
-	_nts_15,	/* 121 */
-	_nts_15,	/* 122 */
-	_nts_15,	/* 123 */
-	_nts_15,	/* 124 */
-	_nts_15,	/* 125 */
-	_nts_15,	/* 126 */
-	_nts_15,	/* 127 */
+	_nts_1,	/* 113 */
+	_nts_1,	/* 114 */
+	_nts_0,	/* 115 */
+	_nts_9,	/* 116 */
+	_nts_1,	/* 117 */
+	_nts_6,	/* 118 */
+	_nts_6,	/* 119 */
+	_nts_6,	/* 120 */
+	_nts_6,	/* 121 */
+	_nts_6,	/* 122 */
+	_nts_6,	/* 123 */
+	_nts_6,	/* 124 */
+	_nts_6,	/* 125 */
+	_nts_6,	/* 126 */
+	_nts_6,	/* 127 */
 	_nts_6,	/* 128 */
 	_nts_6,	/* 129 */
-	_nts_6,	/* 130 */
-	_nts_6,	/* 131 */
-	_nts_1,	/* 132 */
-	_nts_1,	/* 133 */
+	_nts_10,	/* 130 */
+	_nts_10,	/* 131 */
+	_nts_10,	/* 132 */
+	_nts_10,	/* 133 */
 	_nts_1,	/* 134 */
 	_nts_1,	/* 135 */
 	_nts_1,	/* 136 */
 	_nts_1,	/* 137 */
 	_nts_1,	/* 138 */
 	_nts_1,	/* 139 */
-	_nts_15,	/* 140 */
+	_nts_1,	/* 140 */
+	_nts_1,	/* 141 */
+	_nts_6,	/* 142 */
 };
 
 static char *_templates[] = {
@@ -302,126 +286,128 @@ static char *_templates[] = {
 /* 18 */	"%a",	/* con: CNSTI4 */
 /* 19 */	"%a",	/* con: CNSTU4 */
 /* 20 */	"%a",	/* con: CNSTP2 */
-/* 21 */	"\tldi\t%c, %0\n",	/* reg: con */
-/* 22 */	"r0",	/* reg0: CNSTI2 */
-/* 23 */	"r0",	/* reg0: CNSTU2 */
-/* 24 */	"1",	/* conIR: CNSTI2 */
-/* 25 */	"2",	/* conIR: CNSTI2 */
-/* 26 */	"4",	/* conIR: CNSTI2 */
-/* 27 */	"8",	/* conIR: CNSTI2 */
-/* 28 */	"1",	/* conIR: CNSTU2 */
-/* 29 */	"2",	/* conIR: CNSTU2 */
-/* 30 */	"4",	/* conIR: CNSTU2 */
-/* 31 */	"8",	/* conIR: CNSTU2 */
-/* 32 */	"-1",	/* conIR: CNSTI2 */
-/* 33 */	"-2",	/* conIR: CNSTI2 */
-/* 34 */	"-4",	/* conIR: CNSTI2 */
-/* 35 */	"-8",	/* conIR: CNSTI2 */
-/* 36 */	"%0",	/* reg: reg0 */
-/* 37 */	"%0",	/* con: conIR */
-/* 38 */	"",	/* stmt: reg */
-/* 39 */	"%0",	/* acon: con */
-/* 40 */	"%a(bp)",	/* laddr: ADDRFP2 */
-/* 41 */	"%a(bp)",	/* laddr: ADDRLP2 */
-/* 42 */	"%0",	/* addr: laddr */
-/* 43 */	"%a ;XX",	/* jaddr: ADDRGP2 */
-/* 44 */	"%0",	/* addr: jaddr */
-/* 45 */	"%a ;[via BASE]",	/* base: ADDRGP2 */
-/* 46 */	"%a ;[via BASE]",	/* base: ADDRLP2 */
-/* 47 */	"%a[bp]",	/* base: ADDRFP2 */
-/* 48 */	"%0",	/* base: reg */
-/* 49 */	"%0",	/* addr: baddr */
-/* 50 */	"%0",	/* baddr: reg */
-/* 51 */	"\tla16\t%c,%0[BASE]\n",	/* reg: base */
-/* 52 */	"shl %c, %1, %0\n",	/* index: LSHI2(reg,conIR) */
-/* 53 */	"ldwb %c, (%0, %1)\n",	/* reg: INDIRI2(ADDP2(index,reg)) */
-/* 54 */	"sb $%1,%0\n",	/* stmt: ASGNI1(addr,reg) */
-/* 55 */	"sb $%1,%0\n",	/* stmt: ASGNU1(addr,reg) */
-/* 56 */	"\tstw\t%0,%1\n",	/* stmt: ASGNI2(laddr,reg) */
-/* 57 */	"\tstw\tr0(%0),%1\n",	/* stmt: ASGNI2(baddr,reg) */
-/* 58 */	"\tstw\t%1,%0\n",	/* stmt: ASGNU2(addr,reg) */
-/* 59 */	"sw $%1,%0\n",	/* stmt: ASGNP2(addr,reg) */
-/* 60 */	"lb $%c,%0\n",	/* reg: INDIRI1(addr) */
-/* 61 */	"lbu $%c,%0\n",	/* reg: INDIRU1(addr) */
-/* 62 */	"\tldw\t%c,%0\n",	/* reg: INDIRI2(laddr) */
-/* 63 */	"\tldwb\t%c,%0,r0\n",	/* reg: INDIRI2(baddr) */
-/* 64 */	"\tldw\t%c,%0\n",	/* reg: INDIRU2(addr) */
-/* 65 */	"lw $%c,%0\n",	/* reg: INDIRP2(addr) */
-/* 66 */	"lb $%c,%0\n",	/* reg: CVII2(INDIRI1(addr)) */
-/* 67 */	"lbu $%c,%0\n",	/* reg: CVUU2(INDIRU1(addr)) */
-/* 68 */	"lbu $%c,%0\n",	/* reg: CVUI2(INDIRU1(addr)) */
-/* 69 */	"lhu $%c,%0\n",	/* reg: CVUI2(INDIRU2(addr)) */
-/* 70 */	"div $%c,$%0,$%1\n",	/* reg: DIVI2(reg,reg) */
-/* 71 */	"divu $%c,$%0,$%1\n",	/* reg: DIVU2(reg,reg) */
-/* 72 */	"rem $%c,$%0,$%1\n",	/* reg: MODI2(reg,reg) */
-/* 73 */	"remu $%c,$%0,$%1\n",	/* reg: MODU2(reg,reg) */
-/* 74 */	"mul $%c,$%0,$%1\n",	/* reg: MULI2(reg,reg) */
-/* 75 */	"mul $%c,$%0,$%1\n",	/* reg: MULU2(reg,reg) */
-/* 76 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDI2(reg,reg) */
-/* 77 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDP2(reg,reg) */
-/* 78 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDU2(reg,reg) */
-/* 79 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDI2(reg,conIR) */
-/* 80 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDP2(reg,conIR) */
-/* 81 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDU2(reg,conIR) */
-/* 82 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBI2(reg,reg) */
-/* 83 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBP2(reg,reg) */
-/* 84 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBU2(reg,reg) */
-/* 85 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBI2(reg,conIR) */
-/* 86 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBP2(reg,conIR) */
-/* 87 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBU2(reg,conIR) */
-/* 88 */	"\tand\t%c,$%0,%1\n",	/* reg: BANDI2(reg,reg) */
-/* 89 */	"\tor\t%c,$%0,%1\n",	/* reg: BORI2(reg,reg) */
-/* 90 */	"\txor\t%c,$%0,%1\n",	/* reg: BXORI2(reg,reg) */
-/* 91 */	"\tand\t%c,$%0,%1\n",	/* reg: BANDU2(reg,reg) */
-/* 92 */	"\tor\t%c,$%0,%1\n",	/* reg: BORU2(reg,reg) */
-/* 93 */	"\txor\t%c,$%0,%1\n",	/* reg: BXORU2(reg,reg) */
-/* 94 */	"\tand\t%c,%1,%0\n",	/* reg: BANDI2(reg,conIR) */
-/* 95 */	"\tor\t%c,%1,%0\n",	/* reg: BORI2(reg,conIR) */
-/* 96 */	"\txor\t%c,%1,%0\n",	/* reg: BXORI2(reg,conIR) */
-/* 97 */	"\tand\t%c,%1,%0\n",	/* reg: BANDU2(reg,conIR) */
-/* 98 */	"\tor\t%c,%1,%0\n",	/* reg: BORU2(reg,conIR) */
-/* 99 */	"\txor\t%c,%1,%0\n",	/* reg: BXORU2(reg,conIR) */
-/* 100 */	"not $%c,$%0\n",	/* reg: BCOMI2(reg) */
-/* 101 */	"not $%c,$%0\n",	/* reg: BCOMU2(reg) */
-/* 102 */	"negu $%c,$%0\n",	/* reg: NEGI2(reg) */
-/* 103 */	"\tmov\t%c,%0\n",	/* reg: LOADI1(reg) */
-/* 104 */	"\tmov\t%c,%0\n",	/* reg: LOADU1(reg) */
-/* 105 */	"\tmov\t%c,%0\n",	/* reg: LOADI2(reg) */
-/* 106 */	"\tmov\t%c,%0\n",	/* reg: LOADU2(reg) */
-/* 107 */	"\tmov\t%c,%0\n",	/* reg: LOADI4(reg) */
-/* 108 */	"\tmov\t%c,%0\n",	/* reg: LOADP2(reg) */
-/* 109 */	"\tmov\t%c,%0\n",	/* reg: LOADU4(reg) */
-/* 110 */	"sll $%c,$%0,8*(4-%a); sra $%c,$%c,8*(4-%a)\n",	/* reg: CVII2(reg) */
-/* 111 */	"and $%c,$%0,(1<<(8*%a))-1\n",	/* reg: CVUI2(reg) */
-/* 112 */	"and $%c,$%0,(1<<(8*%a))-1\n",	/* reg: CVUU2(reg) */
-/* 113 */	"%a:\n",	/* stmt: LABELV */
-/* 114 */	"\tbr %0\n",	/* stmt: JUMPV(acon) */
-/* 115 */	"\tbr.r %0\n",	/* stmt: JUMPV(reg) */
-/* 116 */	"beq $%0,$%1,%a\n",	/* stmt: EQI2(reg,reg) */
-/* 117 */	"beq $%0,$%1,%a\n",	/* stmt: EQU2(reg,reg) */
-/* 118 */	"\tskip.lt %0, %1\n\tbr %a\n",	/* stmt: GEI2(reg,reg) */
-/* 119 */	"bgeu $%0,$%1,%a\n",	/* stmt: GEU2(reg,reg) */
-/* 120 */	"bgt $%0,$%1,%a\n",	/* stmt: GTI2(reg,reg) */
-/* 121 */	"bgtu $%0,$%1,%a\n",	/* stmt: GTU2(reg,reg) */
-/* 122 */	"ble $%0,$%1,%a\n",	/* stmt: LEI2(reg,reg) */
-/* 123 */	"bleu $%0,$%1,%a\n",	/* stmt: LEU2(reg,reg) */
-/* 124 */	"blt $%0,$%1,%a\n",	/* stmt: LTI2(reg,reg) */
-/* 125 */	"bltu $%0,$%1,%a\n",	/* stmt: LTU2(reg,reg) */
-/* 126 */	"bne $%0,$%1,%a\n",	/* stmt: NEI2(reg,reg) */
-/* 127 */	"bne $%0,$%1,%a\n",	/* stmt: NEU2(reg,reg) */
-/* 128 */	"\taddi\tr1,pc,2\n\tbr\t%0\n",	/* reg: CALLI2(jaddr) */
-/* 129 */	"jal %0\n",	/* reg: CALLP2(jaddr) */
-/* 130 */	"\tBRANCH UNSIGNED\n",	/* reg: CALLU2(jaddr) */
-/* 131 */	"jal %0\n",	/* stmt: CALLV(jaddr) */
-/* 132 */	"# ret\n",	/* stmt: RETI2(reg) */
-/* 133 */	"# ret\n",	/* stmt: RETU2(reg) */
-/* 134 */	"# ret\n",	/* stmt: RETP2(reg) */
-/* 135 */	"# ret\n",	/* stmt: RETV(reg) */
-/* 136 */	"\tpush\t%0\n",	/* stmt: ARGI2(reg) */
-/* 137 */	"\tpush\t%0\n",	/* stmt: ARGU2(reg) */
-/* 138 */	"\tpush\t%0\n",	/* stmt: ARGP2(reg) */
-/* 139 */	"# argb %0\n",	/* stmt: ARGB(INDIRB(reg)) */
-/* 140 */	"# asgnb %0 %1\n",	/* stmt: ASGNB(reg,INDIRB(reg)) */
+/* 21 */	"\tld16\t%c, %0\n",	/* reg: con */
+/* 22 */	"# reg\n",	/* reg: CNSTI1 */
+/* 23 */	"# reg\n",	/* reg: CNSTI2 */
+/* 24 */	"# reg\n",	/* reg: CNSTU1 */
+/* 25 */	"# reg\n",	/* reg: CNSTU2 */
+/* 26 */	"# reg\n",	/* reg: CNSTP2 */
+/* 27 */	"1",	/* conIR: CNSTI2 */
+/* 28 */	"2",	/* conIR: CNSTI2 */
+/* 29 */	"4",	/* conIR: CNSTI2 */
+/* 30 */	"8",	/* conIR: CNSTI2 */
+/* 31 */	"1",	/* conIR: CNSTU2 */
+/* 32 */	"2",	/* conIR: CNSTU2 */
+/* 33 */	"4",	/* conIR: CNSTU2 */
+/* 34 */	"8",	/* conIR: CNSTU2 */
+/* 35 */	"-1",	/* conIR: CNSTI2 */
+/* 36 */	"-2",	/* conIR: CNSTI2 */
+/* 37 */	"-4",	/* conIR: CNSTI2 */
+/* 38 */	"-8",	/* conIR: CNSTI2 */
+/* 39 */	"",	/* stmt: reg */
+/* 40 */	"%0",	/* acon: con */
+/* 41 */	"%a(bp)",	/* addr: ADDRFP2 */
+/* 42 */	"%a(bp)",	/* addr: ADDRLP2 */
+/* 43 */	"\tla16\t%c, %a\n\tadd\t%c, %c, bp\n",	/* reg: ADDRLP2 */
+/* 44 */	"\tla16\t%c,%a\n",	/* reg: ADDRGP2 */
+/* 45 */	"%a ; jaddr",	/* jaddr: ADDRGP2 */
+/* 46 */	"\tshl\t%c, %0, %1 ; [via index]\n",	/* index: LSHI2(reg,con) */
+/* 47 */	"ldw %0(%1), %c\n",	/* reg: INDIRI2(ADDP2(index,reg)) */
+/* 48 */	"\tstb\t%0,%1\n",	/* stmt: ASGNI1(addr,reg) */
+/* 49 */	"\tstb\t%0,%1\n",	/* stmt: ASGNU1(addr,reg) */
+/* 50 */	"\tstb\t%0,%1\n",	/* stmt: ASGNI2(addr,reg) */
+/* 51 */	"\tstw\t%0,%1\n",	/* stmt: ASGNU2(addr,reg) */
+/* 52 */	"\tstw\t%0,%1\n",	/* stmt: ASGNP2(addr,reg) */
+/* 53 */	"\tstb\tr0(%0),%1\n",	/* stmt: ASGNI1(reg,reg) */
+/* 54 */	"\tstb\tr0(%0),%1\n",	/* stmt: ASGNU1(reg,reg) */
+/* 55 */	"\tstw\tr0(%0),%1\n",	/* stmt: ASGNI2(reg,reg) */
+/* 56 */	"\tstw\tr0(%0),%1\n",	/* stmt: ASGNU2(reg,reg) */
+/* 57 */	"\tstw\tr0(%0),%1\n",	/* stmt: ASGNP2(reg,reg) */
+/* 58 */	"\tldb\t%c,%0\n",	/* reg: INDIRI1(addr) */
+/* 59 */	"\tldb\t%c,%0\n",	/* reg: INDIRU1(addr) */
+/* 60 */	"\tldb\t%c,%0\n",	/* reg: INDIRI2(addr) */
+/* 61 */	"\tldb\t%c,%0\n",	/* reg: INDIRU2(addr) */
+/* 62 */	"\tldb\t%c,%0\n",	/* reg: INDIRP2(addr) */
+/* 63 */	"\tldb\t%c,r0(%0)\n",	/* reg: INDIRI1(reg) */
+/* 64 */	"\tldb\t%c,r0(%0)\n",	/* reg: INDIRU1(reg) */
+/* 65 */	"\tldw\t%c,r0(%0)\n",	/* reg: INDIRI2(reg) */
+/* 66 */	"\tldw\t%c,r0(%0)\n",	/* reg: INDIRU2(reg) */
+/* 67 */	"\tldw\t%c,r0(%0)\n",	/* reg: INDIRP2(reg) */
+/* 68 */	"lb $%c,%0\n",	/* reg: CVII2(INDIRI1(addr)) */
+/* 69 */	"lbu $%c,%0\n",	/* reg: CVUU2(INDIRU1(addr)) */
+/* 70 */	"lbu $%c,%0\n",	/* reg: CVUI2(INDIRU1(addr)) */
+/* 71 */	"lhu $%c,%0\n",	/* reg: CVUI2(INDIRU2(addr)) */
+/* 72 */	"div $%c,$%0,$%1\n",	/* reg: DIVI2(reg,reg) */
+/* 73 */	"divu $%c,$%0,$%1\n",	/* reg: DIVU2(reg,reg) */
+/* 74 */	"rem $%c,$%0,$%1\n",	/* reg: MODI2(reg,reg) */
+/* 75 */	"remu $%c,$%0,$%1\n",	/* reg: MODU2(reg,reg) */
+/* 76 */	"mul $%c,$%0,$%1\n",	/* reg: MULI2(reg,reg) */
+/* 77 */	"mul $%c,$%0,$%1\n",	/* reg: MULU2(reg,reg) */
+/* 78 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDI2(reg,reg) */
+/* 79 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDP2(reg,reg) */
+/* 80 */	"\tadd\t%c,%0,%1\n",	/* reg: ADDU2(reg,reg) */
+/* 81 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDI2(reg,conIR) */
+/* 82 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDP2(reg,conIR) */
+/* 83 */	"\taddi\t%c,%0,%1\n",	/* reg: ADDU2(reg,conIR) */
+/* 84 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBI2(reg,reg) */
+/* 85 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBP2(reg,reg) */
+/* 86 */	"\tsub\t%c,%0,%1\n",	/* reg: SUBU2(reg,reg) */
+/* 87 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBI2(reg,conIR) */
+/* 88 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBP2(reg,conIR) */
+/* 89 */	"\tsubi\t%c,%0,%1\n",	/* reg: SUBU2(reg,conIR) */
+/* 90 */	"\tand\t%c,$%0,%1\n",	/* reg: BANDI2(reg,reg) */
+/* 91 */	"\tor\t%c,$%0,%1\n",	/* reg: BORI2(reg,reg) */
+/* 92 */	"\txor\t%c,$%0,%1\n",	/* reg: BXORI2(reg,reg) */
+/* 93 */	"\tand\t%c,$%0,%1\n",	/* reg: BANDU2(reg,reg) */
+/* 94 */	"\tor\t%c,$%0,%1\n",	/* reg: BORU2(reg,reg) */
+/* 95 */	"\txor\t%c,$%0,%1\n",	/* reg: BXORU2(reg,reg) */
+/* 96 */	"\tand\t%c,%1,%0\n",	/* reg: BANDI2(reg,conIR) */
+/* 97 */	"\tor\t%c,%1,%0\n",	/* reg: BORI2(reg,conIR) */
+/* 98 */	"\txor\t%c,%1,%0\n",	/* reg: BXORI2(reg,conIR) */
+/* 99 */	"\tand\t%c,%1,%0\n",	/* reg: BANDU2(reg,conIR) */
+/* 100 */	"\tor\t%c,%1,%0\n",	/* reg: BORU2(reg,conIR) */
+/* 101 */	"\txor\t%c,%1,%0\n",	/* reg: BXORU2(reg,conIR) */
+/* 102 */	"not $%c,$%0\n",	/* reg: BCOMI2(reg) */
+/* 103 */	"not $%c,$%0\n",	/* reg: BCOMU2(reg) */
+/* 104 */	"negu $%c,$%0\n",	/* reg: NEGI2(reg) */
+/* 105 */	"\tmov\t%c,%0\n",	/* reg: LOADI1(reg) */
+/* 106 */	"\tmov\t%c,%0\n",	/* reg: LOADU1(reg) */
+/* 107 */	"\tmov\t%c,%0\n",	/* reg: LOADI2(reg) */
+/* 108 */	"\tmov\t%c,%0\n",	/* reg: LOADU2(reg) */
+/* 109 */	"\tmov\t%c,%0\n",	/* reg: LOADI4(reg) */
+/* 110 */	"\tmov\t%c,%0\n",	/* reg: LOADP2(reg) */
+/* 111 */	"\tmov\t%c,%0\n",	/* reg: LOADU4(reg) */
+/* 112 */	"sll $%c,$%0,8*(4-%a); sra $%c,$%c,8*(4-%a)\n",	/* reg: CVII2(reg) */
+/* 113 */	"and $%c,$%0,(1<<(8*%a))-1\n",	/* reg: CVUI2(reg) */
+/* 114 */	"and $%c,$%0,(1<<(8*%a))-1\n",	/* reg: CVUU2(reg) */
+/* 115 */	"%a:\n",	/* stmt: LABELV */
+/* 116 */	"\tbr %0\n",	/* stmt: JUMPV(acon) */
+/* 117 */	"\tbr.r %0\n",	/* stmt: JUMPV(reg) */
+/* 118 */	"beq $%0,$%1,%a\n",	/* stmt: EQI2(reg,reg) */
+/* 119 */	"beq $%0,$%1,%a\n",	/* stmt: EQU2(reg,reg) */
+/* 120 */	"\tskip.lt %0, %1\n\tbr %a\n",	/* stmt: GEI2(reg,reg) */
+/* 121 */	"bgeu $%0,$%1,%a\n",	/* stmt: GEU2(reg,reg) */
+/* 122 */	"bgt $%0,$%1,%a\n",	/* stmt: GTI2(reg,reg) */
+/* 123 */	"bgtu $%0,$%1,%a\n",	/* stmt: GTU2(reg,reg) */
+/* 124 */	"ble $%0,$%1,%a\n",	/* stmt: LEI2(reg,reg) */
+/* 125 */	"bleu $%0,$%1,%a\n",	/* stmt: LEU2(reg,reg) */
+/* 126 */	"blt $%0,$%1,%a\n",	/* stmt: LTI2(reg,reg) */
+/* 127 */	"bltu $%0,$%1,%a\n",	/* stmt: LTU2(reg,reg) */
+/* 128 */	"bne $%0,$%1,%a\n",	/* stmt: NEI2(reg,reg) */
+/* 129 */	"bne $%0,$%1,%a\n",	/* stmt: NEU2(reg,reg) */
+/* 130 */	"\taddi\tr1,pc,2\n\tbr\t%0\n",	/* reg: CALLI2(jaddr) */
+/* 131 */	"jal %0\n",	/* reg: CALLP2(jaddr) */
+/* 132 */	"\tBRANCH UNSIGNED\n",	/* reg: CALLU2(jaddr) */
+/* 133 */	"jal %0\n",	/* stmt: CALLV(jaddr) */
+/* 134 */	"# ret\n",	/* stmt: RETI2(reg) */
+/* 135 */	"# ret\n",	/* stmt: RETU2(reg) */
+/* 136 */	"# ret\n",	/* stmt: RETP2(reg) */
+/* 137 */	"# ret\n",	/* stmt: RETV(reg) */
+/* 138 */	"\tpush\t%0\n",	/* stmt: ARGI2(reg) */
+/* 139 */	"\tpush\t%0\n",	/* stmt: ARGU2(reg) */
+/* 140 */	"\tpush\t%0\n",	/* stmt: ARGP2(reg) */
+/* 141 */	"# argb %0\n",	/* stmt: ARGB(INDIRB(reg)) */
+/* 142 */	"# asgnb %0 %1\n",	/* stmt: ASGNB(reg,INDIRB(reg)) */
 };
 
 static char _isinstruction[] = {
@@ -446,126 +432,128 @@ static char _isinstruction[] = {
 /* 18 */	0,	/* %a */
 /* 19 */	0,	/* %a */
 /* 20 */	0,	/* %a */
-/* 21 */	1,	/* \tldi\t%c, %0\n */
-/* 22 */	0,	/* r0 */
-/* 23 */	0,	/* r0 */
-/* 24 */	0,	/* 1 */
-/* 25 */	0,	/* 2 */
-/* 26 */	0,	/* 4 */
-/* 27 */	0,	/* 8 */
-/* 28 */	0,	/* 1 */
-/* 29 */	0,	/* 2 */
-/* 30 */	0,	/* 4 */
-/* 31 */	0,	/* 8 */
-/* 32 */	0,	/* -1 */
-/* 33 */	0,	/* -2 */
-/* 34 */	0,	/* -4 */
-/* 35 */	0,	/* -8 */
-/* 36 */	0,	/* %0 */
-/* 37 */	0,	/* %0 */
-/* 38 */	0,	/*  */
-/* 39 */	0,	/* %0 */
-/* 40 */	0,	/* %a(bp) */
+/* 21 */	1,	/* \tld16\t%c, %0\n */
+/* 22 */	1,	/* # reg\n */
+/* 23 */	1,	/* # reg\n */
+/* 24 */	1,	/* # reg\n */
+/* 25 */	1,	/* # reg\n */
+/* 26 */	1,	/* # reg\n */
+/* 27 */	0,	/* 1 */
+/* 28 */	0,	/* 2 */
+/* 29 */	0,	/* 4 */
+/* 30 */	0,	/* 8 */
+/* 31 */	0,	/* 1 */
+/* 32 */	0,	/* 2 */
+/* 33 */	0,	/* 4 */
+/* 34 */	0,	/* 8 */
+/* 35 */	0,	/* -1 */
+/* 36 */	0,	/* -2 */
+/* 37 */	0,	/* -4 */
+/* 38 */	0,	/* -8 */
+/* 39 */	0,	/*  */
+/* 40 */	0,	/* %0 */
 /* 41 */	0,	/* %a(bp) */
-/* 42 */	0,	/* %0 */
-/* 43 */	0,	/* %a ;XX */
-/* 44 */	0,	/* %0 */
-/* 45 */	0,	/* %a ;[via BASE] */
-/* 46 */	0,	/* %a ;[via BASE] */
-/* 47 */	0,	/* %a[bp] */
-/* 48 */	0,	/* %0 */
-/* 49 */	0,	/* %0 */
-/* 50 */	0,	/* %0 */
-/* 51 */	1,	/* \tla16\t%c,%0[BASE]\n */
-/* 52 */	1,	/* shl %c, %1, %0\n */
-/* 53 */	1,	/* ldwb %c, (%0, %1)\n */
-/* 54 */	1,	/* sb $%1,%0\n */
-/* 55 */	1,	/* sb $%1,%0\n */
-/* 56 */	1,	/* \tstw\t%0,%1\n */
+/* 42 */	0,	/* %a(bp) */
+/* 43 */	1,	/* \tla16\t%c, %a\n\tadd\t%c, %c, bp\n */
+/* 44 */	1,	/* \tla16\t%c,%a\n */
+/* 45 */	0,	/* %a ; jaddr */
+/* 46 */	1,	/* \tshl\t%c, %0, %1 ; [via index]\n */
+/* 47 */	1,	/* ldw %0(%1), %c\n */
+/* 48 */	1,	/* \tstb\t%0,%1\n */
+/* 49 */	1,	/* \tstb\t%0,%1\n */
+/* 50 */	1,	/* \tstb\t%0,%1\n */
+/* 51 */	1,	/* \tstw\t%0,%1\n */
+/* 52 */	1,	/* \tstw\t%0,%1\n */
+/* 53 */	1,	/* \tstb\tr0(%0),%1\n */
+/* 54 */	1,	/* \tstb\tr0(%0),%1\n */
+/* 55 */	1,	/* \tstw\tr0(%0),%1\n */
+/* 56 */	1,	/* \tstw\tr0(%0),%1\n */
 /* 57 */	1,	/* \tstw\tr0(%0),%1\n */
-/* 58 */	1,	/* \tstw\t%1,%0\n */
-/* 59 */	1,	/* sw $%1,%0\n */
-/* 60 */	1,	/* lb $%c,%0\n */
-/* 61 */	1,	/* lbu $%c,%0\n */
-/* 62 */	1,	/* \tldw\t%c,%0\n */
-/* 63 */	1,	/* \tldwb\t%c,%0,r0\n */
-/* 64 */	1,	/* \tldw\t%c,%0\n */
-/* 65 */	1,	/* lw $%c,%0\n */
-/* 66 */	1,	/* lb $%c,%0\n */
-/* 67 */	1,	/* lbu $%c,%0\n */
-/* 68 */	1,	/* lbu $%c,%0\n */
-/* 69 */	1,	/* lhu $%c,%0\n */
-/* 70 */	1,	/* div $%c,$%0,$%1\n */
-/* 71 */	1,	/* divu $%c,$%0,$%1\n */
-/* 72 */	1,	/* rem $%c,$%0,$%1\n */
-/* 73 */	1,	/* remu $%c,$%0,$%1\n */
-/* 74 */	1,	/* mul $%c,$%0,$%1\n */
-/* 75 */	1,	/* mul $%c,$%0,$%1\n */
-/* 76 */	1,	/* \tadd\t%c,%0,%1\n */
-/* 77 */	1,	/* \tadd\t%c,%0,%1\n */
+/* 58 */	1,	/* \tldb\t%c,%0\n */
+/* 59 */	1,	/* \tldb\t%c,%0\n */
+/* 60 */	1,	/* \tldb\t%c,%0\n */
+/* 61 */	1,	/* \tldb\t%c,%0\n */
+/* 62 */	1,	/* \tldb\t%c,%0\n */
+/* 63 */	1,	/* \tldb\t%c,r0(%0)\n */
+/* 64 */	1,	/* \tldb\t%c,r0(%0)\n */
+/* 65 */	1,	/* \tldw\t%c,r0(%0)\n */
+/* 66 */	1,	/* \tldw\t%c,r0(%0)\n */
+/* 67 */	1,	/* \tldw\t%c,r0(%0)\n */
+/* 68 */	1,	/* lb $%c,%0\n */
+/* 69 */	1,	/* lbu $%c,%0\n */
+/* 70 */	1,	/* lbu $%c,%0\n */
+/* 71 */	1,	/* lhu $%c,%0\n */
+/* 72 */	1,	/* div $%c,$%0,$%1\n */
+/* 73 */	1,	/* divu $%c,$%0,$%1\n */
+/* 74 */	1,	/* rem $%c,$%0,$%1\n */
+/* 75 */	1,	/* remu $%c,$%0,$%1\n */
+/* 76 */	1,	/* mul $%c,$%0,$%1\n */
+/* 77 */	1,	/* mul $%c,$%0,$%1\n */
 /* 78 */	1,	/* \tadd\t%c,%0,%1\n */
-/* 79 */	1,	/* \taddi\t%c,%0,%1\n */
-/* 80 */	1,	/* \taddi\t%c,%0,%1\n */
+/* 79 */	1,	/* \tadd\t%c,%0,%1\n */
+/* 80 */	1,	/* \tadd\t%c,%0,%1\n */
 /* 81 */	1,	/* \taddi\t%c,%0,%1\n */
-/* 82 */	1,	/* \tsub\t%c,%0,%1\n */
-/* 83 */	1,	/* \tsub\t%c,%0,%1\n */
+/* 82 */	1,	/* \taddi\t%c,%0,%1\n */
+/* 83 */	1,	/* \taddi\t%c,%0,%1\n */
 /* 84 */	1,	/* \tsub\t%c,%0,%1\n */
-/* 85 */	1,	/* \tsubi\t%c,%0,%1\n */
-/* 86 */	1,	/* \tsubi\t%c,%0,%1\n */
+/* 85 */	1,	/* \tsub\t%c,%0,%1\n */
+/* 86 */	1,	/* \tsub\t%c,%0,%1\n */
 /* 87 */	1,	/* \tsubi\t%c,%0,%1\n */
-/* 88 */	1,	/* \tand\t%c,$%0,%1\n */
-/* 89 */	1,	/* \tor\t%c,$%0,%1\n */
-/* 90 */	1,	/* \txor\t%c,$%0,%1\n */
-/* 91 */	1,	/* \tand\t%c,$%0,%1\n */
-/* 92 */	1,	/* \tor\t%c,$%0,%1\n */
-/* 93 */	1,	/* \txor\t%c,$%0,%1\n */
-/* 94 */	1,	/* \tand\t%c,%1,%0\n */
-/* 95 */	1,	/* \tor\t%c,%1,%0\n */
-/* 96 */	1,	/* \txor\t%c,%1,%0\n */
-/* 97 */	1,	/* \tand\t%c,%1,%0\n */
-/* 98 */	1,	/* \tor\t%c,%1,%0\n */
-/* 99 */	1,	/* \txor\t%c,%1,%0\n */
-/* 100 */	1,	/* not $%c,$%0\n */
-/* 101 */	1,	/* not $%c,$%0\n */
-/* 102 */	1,	/* negu $%c,$%0\n */
-/* 103 */	1,	/* \tmov\t%c,%0\n */
-/* 104 */	1,	/* \tmov\t%c,%0\n */
+/* 88 */	1,	/* \tsubi\t%c,%0,%1\n */
+/* 89 */	1,	/* \tsubi\t%c,%0,%1\n */
+/* 90 */	1,	/* \tand\t%c,$%0,%1\n */
+/* 91 */	1,	/* \tor\t%c,$%0,%1\n */
+/* 92 */	1,	/* \txor\t%c,$%0,%1\n */
+/* 93 */	1,	/* \tand\t%c,$%0,%1\n */
+/* 94 */	1,	/* \tor\t%c,$%0,%1\n */
+/* 95 */	1,	/* \txor\t%c,$%0,%1\n */
+/* 96 */	1,	/* \tand\t%c,%1,%0\n */
+/* 97 */	1,	/* \tor\t%c,%1,%0\n */
+/* 98 */	1,	/* \txor\t%c,%1,%0\n */
+/* 99 */	1,	/* \tand\t%c,%1,%0\n */
+/* 100 */	1,	/* \tor\t%c,%1,%0\n */
+/* 101 */	1,	/* \txor\t%c,%1,%0\n */
+/* 102 */	1,	/* not $%c,$%0\n */
+/* 103 */	1,	/* not $%c,$%0\n */
+/* 104 */	1,	/* negu $%c,$%0\n */
 /* 105 */	1,	/* \tmov\t%c,%0\n */
 /* 106 */	1,	/* \tmov\t%c,%0\n */
 /* 107 */	1,	/* \tmov\t%c,%0\n */
 /* 108 */	1,	/* \tmov\t%c,%0\n */
 /* 109 */	1,	/* \tmov\t%c,%0\n */
-/* 110 */	1,	/* sll $%c,$%0,8*(4-%a); sra $%c,$%c,8*(4-%a)\n */
-/* 111 */	1,	/* and $%c,$%0,(1<<(8*%a))-1\n */
-/* 112 */	1,	/* and $%c,$%0,(1<<(8*%a))-1\n */
-/* 113 */	1,	/* %a:\n */
-/* 114 */	1,	/* \tbr %0\n */
-/* 115 */	1,	/* \tbr.r %0\n */
-/* 116 */	1,	/* beq $%0,$%1,%a\n */
-/* 117 */	1,	/* beq $%0,$%1,%a\n */
-/* 118 */	1,	/* \tskip.lt %0, %1\n\tbr %a\n */
-/* 119 */	1,	/* bgeu $%0,$%1,%a\n */
-/* 120 */	1,	/* bgt $%0,$%1,%a\n */
-/* 121 */	1,	/* bgtu $%0,$%1,%a\n */
-/* 122 */	1,	/* ble $%0,$%1,%a\n */
-/* 123 */	1,	/* bleu $%0,$%1,%a\n */
-/* 124 */	1,	/* blt $%0,$%1,%a\n */
-/* 125 */	1,	/* bltu $%0,$%1,%a\n */
-/* 126 */	1,	/* bne $%0,$%1,%a\n */
-/* 127 */	1,	/* bne $%0,$%1,%a\n */
-/* 128 */	1,	/* \taddi\tr1,pc,2\n\tbr\t%0\n */
-/* 129 */	1,	/* jal %0\n */
-/* 130 */	1,	/* \tBRANCH UNSIGNED\n */
+/* 110 */	1,	/* \tmov\t%c,%0\n */
+/* 111 */	1,	/* \tmov\t%c,%0\n */
+/* 112 */	1,	/* sll $%c,$%0,8*(4-%a); sra $%c,$%c,8*(4-%a)\n */
+/* 113 */	1,	/* and $%c,$%0,(1<<(8*%a))-1\n */
+/* 114 */	1,	/* and $%c,$%0,(1<<(8*%a))-1\n */
+/* 115 */	1,	/* %a:\n */
+/* 116 */	1,	/* \tbr %0\n */
+/* 117 */	1,	/* \tbr.r %0\n */
+/* 118 */	1,	/* beq $%0,$%1,%a\n */
+/* 119 */	1,	/* beq $%0,$%1,%a\n */
+/* 120 */	1,	/* \tskip.lt %0, %1\n\tbr %a\n */
+/* 121 */	1,	/* bgeu $%0,$%1,%a\n */
+/* 122 */	1,	/* bgt $%0,$%1,%a\n */
+/* 123 */	1,	/* bgtu $%0,$%1,%a\n */
+/* 124 */	1,	/* ble $%0,$%1,%a\n */
+/* 125 */	1,	/* bleu $%0,$%1,%a\n */
+/* 126 */	1,	/* blt $%0,$%1,%a\n */
+/* 127 */	1,	/* bltu $%0,$%1,%a\n */
+/* 128 */	1,	/* bne $%0,$%1,%a\n */
+/* 129 */	1,	/* bne $%0,$%1,%a\n */
+/* 130 */	1,	/* \taddi\tr1,pc,2\n\tbr\t%0\n */
 /* 131 */	1,	/* jal %0\n */
-/* 132 */	1,	/* # ret\n */
-/* 133 */	1,	/* # ret\n */
+/* 132 */	1,	/* \tBRANCH UNSIGNED\n */
+/* 133 */	1,	/* jal %0\n */
 /* 134 */	1,	/* # ret\n */
 /* 135 */	1,	/* # ret\n */
-/* 136 */	1,	/* \tpush\t%0\n */
-/* 137 */	1,	/* \tpush\t%0\n */
+/* 136 */	1,	/* # ret\n */
+/* 137 */	1,	/* # ret\n */
 /* 138 */	1,	/* \tpush\t%0\n */
-/* 139 */	1,	/* # argb %0\n */
-/* 140 */	1,	/* # asgnb %0 %1\n */
+/* 139 */	1,	/* \tpush\t%0\n */
+/* 140 */	1,	/* \tpush\t%0\n */
+/* 141 */	1,	/* # argb %0\n */
+/* 142 */	1,	/* # asgnb %0 %1\n */
 };
 
 static char *_string[] = {
@@ -591,125 +579,127 @@ static char *_string[] = {
 /* 19 */	"con: CNSTU4",
 /* 20 */	"con: CNSTP2",
 /* 21 */	"reg: con",
-/* 22 */	"reg0: CNSTI2",
-/* 23 */	"reg0: CNSTU2",
-/* 24 */	"conIR: CNSTI2",
-/* 25 */	"conIR: CNSTI2",
-/* 26 */	"conIR: CNSTI2",
+/* 22 */	"reg: CNSTI1",
+/* 23 */	"reg: CNSTI2",
+/* 24 */	"reg: CNSTU1",
+/* 25 */	"reg: CNSTU2",
+/* 26 */	"reg: CNSTP2",
 /* 27 */	"conIR: CNSTI2",
-/* 28 */	"conIR: CNSTU2",
-/* 29 */	"conIR: CNSTU2",
-/* 30 */	"conIR: CNSTU2",
+/* 28 */	"conIR: CNSTI2",
+/* 29 */	"conIR: CNSTI2",
+/* 30 */	"conIR: CNSTI2",
 /* 31 */	"conIR: CNSTU2",
-/* 32 */	"conIR: CNSTI2",
-/* 33 */	"conIR: CNSTI2",
-/* 34 */	"conIR: CNSTI2",
+/* 32 */	"conIR: CNSTU2",
+/* 33 */	"conIR: CNSTU2",
+/* 34 */	"conIR: CNSTU2",
 /* 35 */	"conIR: CNSTI2",
-/* 36 */	"reg: reg0",
-/* 37 */	"con: conIR",
-/* 38 */	"stmt: reg",
-/* 39 */	"acon: con",
-/* 40 */	"laddr: ADDRFP2",
-/* 41 */	"laddr: ADDRLP2",
-/* 42 */	"addr: laddr",
-/* 43 */	"jaddr: ADDRGP2",
-/* 44 */	"addr: jaddr",
-/* 45 */	"base: ADDRGP2",
-/* 46 */	"base: ADDRLP2",
-/* 47 */	"base: ADDRFP2",
-/* 48 */	"base: reg",
-/* 49 */	"addr: baddr",
-/* 50 */	"baddr: reg",
-/* 51 */	"reg: base",
-/* 52 */	"index: LSHI2(reg,conIR)",
-/* 53 */	"reg: INDIRI2(ADDP2(index,reg))",
-/* 54 */	"stmt: ASGNI1(addr,reg)",
-/* 55 */	"stmt: ASGNU1(addr,reg)",
-/* 56 */	"stmt: ASGNI2(laddr,reg)",
-/* 57 */	"stmt: ASGNI2(baddr,reg)",
-/* 58 */	"stmt: ASGNU2(addr,reg)",
-/* 59 */	"stmt: ASGNP2(addr,reg)",
-/* 60 */	"reg: INDIRI1(addr)",
-/* 61 */	"reg: INDIRU1(addr)",
-/* 62 */	"reg: INDIRI2(laddr)",
-/* 63 */	"reg: INDIRI2(baddr)",
-/* 64 */	"reg: INDIRU2(addr)",
-/* 65 */	"reg: INDIRP2(addr)",
-/* 66 */	"reg: CVII2(INDIRI1(addr))",
-/* 67 */	"reg: CVUU2(INDIRU1(addr))",
-/* 68 */	"reg: CVUI2(INDIRU1(addr))",
-/* 69 */	"reg: CVUI2(INDIRU2(addr))",
-/* 70 */	"reg: DIVI2(reg,reg)",
-/* 71 */	"reg: DIVU2(reg,reg)",
-/* 72 */	"reg: MODI2(reg,reg)",
-/* 73 */	"reg: MODU2(reg,reg)",
-/* 74 */	"reg: MULI2(reg,reg)",
-/* 75 */	"reg: MULU2(reg,reg)",
-/* 76 */	"reg: ADDI2(reg,reg)",
-/* 77 */	"reg: ADDP2(reg,reg)",
-/* 78 */	"reg: ADDU2(reg,reg)",
-/* 79 */	"reg: ADDI2(reg,conIR)",
-/* 80 */	"reg: ADDP2(reg,conIR)",
-/* 81 */	"reg: ADDU2(reg,conIR)",
-/* 82 */	"reg: SUBI2(reg,reg)",
-/* 83 */	"reg: SUBP2(reg,reg)",
-/* 84 */	"reg: SUBU2(reg,reg)",
-/* 85 */	"reg: SUBI2(reg,conIR)",
-/* 86 */	"reg: SUBP2(reg,conIR)",
-/* 87 */	"reg: SUBU2(reg,conIR)",
-/* 88 */	"reg: BANDI2(reg,reg)",
-/* 89 */	"reg: BORI2(reg,reg)",
-/* 90 */	"reg: BXORI2(reg,reg)",
-/* 91 */	"reg: BANDU2(reg,reg)",
-/* 92 */	"reg: BORU2(reg,reg)",
-/* 93 */	"reg: BXORU2(reg,reg)",
-/* 94 */	"reg: BANDI2(reg,conIR)",
-/* 95 */	"reg: BORI2(reg,conIR)",
-/* 96 */	"reg: BXORI2(reg,conIR)",
-/* 97 */	"reg: BANDU2(reg,conIR)",
-/* 98 */	"reg: BORU2(reg,conIR)",
-/* 99 */	"reg: BXORU2(reg,conIR)",
-/* 100 */	"reg: BCOMI2(reg)",
-/* 101 */	"reg: BCOMU2(reg)",
-/* 102 */	"reg: NEGI2(reg)",
-/* 103 */	"reg: LOADI1(reg)",
-/* 104 */	"reg: LOADU1(reg)",
-/* 105 */	"reg: LOADI2(reg)",
-/* 106 */	"reg: LOADU2(reg)",
-/* 107 */	"reg: LOADI4(reg)",
-/* 108 */	"reg: LOADP2(reg)",
-/* 109 */	"reg: LOADU4(reg)",
-/* 110 */	"reg: CVII2(reg)",
-/* 111 */	"reg: CVUI2(reg)",
-/* 112 */	"reg: CVUU2(reg)",
-/* 113 */	"stmt: LABELV",
-/* 114 */	"stmt: JUMPV(acon)",
-/* 115 */	"stmt: JUMPV(reg)",
-/* 116 */	"stmt: EQI2(reg,reg)",
-/* 117 */	"stmt: EQU2(reg,reg)",
-/* 118 */	"stmt: GEI2(reg,reg)",
-/* 119 */	"stmt: GEU2(reg,reg)",
-/* 120 */	"stmt: GTI2(reg,reg)",
-/* 121 */	"stmt: GTU2(reg,reg)",
-/* 122 */	"stmt: LEI2(reg,reg)",
-/* 123 */	"stmt: LEU2(reg,reg)",
-/* 124 */	"stmt: LTI2(reg,reg)",
-/* 125 */	"stmt: LTU2(reg,reg)",
-/* 126 */	"stmt: NEI2(reg,reg)",
-/* 127 */	"stmt: NEU2(reg,reg)",
-/* 128 */	"reg: CALLI2(jaddr)",
-/* 129 */	"reg: CALLP2(jaddr)",
-/* 130 */	"reg: CALLU2(jaddr)",
-/* 131 */	"stmt: CALLV(jaddr)",
-/* 132 */	"stmt: RETI2(reg)",
-/* 133 */	"stmt: RETU2(reg)",
-/* 134 */	"stmt: RETP2(reg)",
-/* 135 */	"stmt: RETV(reg)",
-/* 136 */	"stmt: ARGI2(reg)",
-/* 137 */	"stmt: ARGU2(reg)",
-/* 138 */	"stmt: ARGP2(reg)",
-/* 139 */	"stmt: ARGB(INDIRB(reg))",
-/* 140 */	"stmt: ASGNB(reg,INDIRB(reg))",
+/* 36 */	"conIR: CNSTI2",
+/* 37 */	"conIR: CNSTI2",
+/* 38 */	"conIR: CNSTI2",
+/* 39 */	"stmt: reg",
+/* 40 */	"acon: con",
+/* 41 */	"addr: ADDRFP2",
+/* 42 */	"addr: ADDRLP2",
+/* 43 */	"reg: ADDRLP2",
+/* 44 */	"reg: ADDRGP2",
+/* 45 */	"jaddr: ADDRGP2",
+/* 46 */	"index: LSHI2(reg,con)",
+/* 47 */	"reg: INDIRI2(ADDP2(index,reg))",
+/* 48 */	"stmt: ASGNI1(addr,reg)",
+/* 49 */	"stmt: ASGNU1(addr,reg)",
+/* 50 */	"stmt: ASGNI2(addr,reg)",
+/* 51 */	"stmt: ASGNU2(addr,reg)",
+/* 52 */	"stmt: ASGNP2(addr,reg)",
+/* 53 */	"stmt: ASGNI1(reg,reg)",
+/* 54 */	"stmt: ASGNU1(reg,reg)",
+/* 55 */	"stmt: ASGNI2(reg,reg)",
+/* 56 */	"stmt: ASGNU2(reg,reg)",
+/* 57 */	"stmt: ASGNP2(reg,reg)",
+/* 58 */	"reg: INDIRI1(addr)",
+/* 59 */	"reg: INDIRU1(addr)",
+/* 60 */	"reg: INDIRI2(addr)",
+/* 61 */	"reg: INDIRU2(addr)",
+/* 62 */	"reg: INDIRP2(addr)",
+/* 63 */	"reg: INDIRI1(reg)",
+/* 64 */	"reg: INDIRU1(reg)",
+/* 65 */	"reg: INDIRI2(reg)",
+/* 66 */	"reg: INDIRU2(reg)",
+/* 67 */	"reg: INDIRP2(reg)",
+/* 68 */	"reg: CVII2(INDIRI1(addr))",
+/* 69 */	"reg: CVUU2(INDIRU1(addr))",
+/* 70 */	"reg: CVUI2(INDIRU1(addr))",
+/* 71 */	"reg: CVUI2(INDIRU2(addr))",
+/* 72 */	"reg: DIVI2(reg,reg)",
+/* 73 */	"reg: DIVU2(reg,reg)",
+/* 74 */	"reg: MODI2(reg,reg)",
+/* 75 */	"reg: MODU2(reg,reg)",
+/* 76 */	"reg: MULI2(reg,reg)",
+/* 77 */	"reg: MULU2(reg,reg)",
+/* 78 */	"reg: ADDI2(reg,reg)",
+/* 79 */	"reg: ADDP2(reg,reg)",
+/* 80 */	"reg: ADDU2(reg,reg)",
+/* 81 */	"reg: ADDI2(reg,conIR)",
+/* 82 */	"reg: ADDP2(reg,conIR)",
+/* 83 */	"reg: ADDU2(reg,conIR)",
+/* 84 */	"reg: SUBI2(reg,reg)",
+/* 85 */	"reg: SUBP2(reg,reg)",
+/* 86 */	"reg: SUBU2(reg,reg)",
+/* 87 */	"reg: SUBI2(reg,conIR)",
+/* 88 */	"reg: SUBP2(reg,conIR)",
+/* 89 */	"reg: SUBU2(reg,conIR)",
+/* 90 */	"reg: BANDI2(reg,reg)",
+/* 91 */	"reg: BORI2(reg,reg)",
+/* 92 */	"reg: BXORI2(reg,reg)",
+/* 93 */	"reg: BANDU2(reg,reg)",
+/* 94 */	"reg: BORU2(reg,reg)",
+/* 95 */	"reg: BXORU2(reg,reg)",
+/* 96 */	"reg: BANDI2(reg,conIR)",
+/* 97 */	"reg: BORI2(reg,conIR)",
+/* 98 */	"reg: BXORI2(reg,conIR)",
+/* 99 */	"reg: BANDU2(reg,conIR)",
+/* 100 */	"reg: BORU2(reg,conIR)",
+/* 101 */	"reg: BXORU2(reg,conIR)",
+/* 102 */	"reg: BCOMI2(reg)",
+/* 103 */	"reg: BCOMU2(reg)",
+/* 104 */	"reg: NEGI2(reg)",
+/* 105 */	"reg: LOADI1(reg)",
+/* 106 */	"reg: LOADU1(reg)",
+/* 107 */	"reg: LOADI2(reg)",
+/* 108 */	"reg: LOADU2(reg)",
+/* 109 */	"reg: LOADI4(reg)",
+/* 110 */	"reg: LOADP2(reg)",
+/* 111 */	"reg: LOADU4(reg)",
+/* 112 */	"reg: CVII2(reg)",
+/* 113 */	"reg: CVUI2(reg)",
+/* 114 */	"reg: CVUU2(reg)",
+/* 115 */	"stmt: LABELV",
+/* 116 */	"stmt: JUMPV(acon)",
+/* 117 */	"stmt: JUMPV(reg)",
+/* 118 */	"stmt: EQI2(reg,reg)",
+/* 119 */	"stmt: EQU2(reg,reg)",
+/* 120 */	"stmt: GEI2(reg,reg)",
+/* 121 */	"stmt: GEU2(reg,reg)",
+/* 122 */	"stmt: GTI2(reg,reg)",
+/* 123 */	"stmt: GTU2(reg,reg)",
+/* 124 */	"stmt: LEI2(reg,reg)",
+/* 125 */	"stmt: LEU2(reg,reg)",
+/* 126 */	"stmt: LTI2(reg,reg)",
+/* 127 */	"stmt: LTU2(reg,reg)",
+/* 128 */	"stmt: NEI2(reg,reg)",
+/* 129 */	"stmt: NEU2(reg,reg)",
+/* 130 */	"reg: CALLI2(jaddr)",
+/* 131 */	"reg: CALLP2(jaddr)",
+/* 132 */	"reg: CALLU2(jaddr)",
+/* 133 */	"stmt: CALLV(jaddr)",
+/* 134 */	"stmt: RETI2(reg)",
+/* 135 */	"stmt: RETU2(reg)",
+/* 136 */	"stmt: RETP2(reg)",
+/* 137 */	"stmt: RETV(reg)",
+/* 138 */	"stmt: ARGI2(reg)",
+/* 139 */	"stmt: ARGU2(reg)",
+/* 140 */	"stmt: ARGP2(reg)",
+/* 141 */	"stmt: ARGB(INDIRB(reg))",
+/* 142 */	"stmt: ASGNB(reg,INDIRB(reg))",
 };
 
 static short _decode_stmt[] = {
@@ -720,15 +710,17 @@ static short _decode_stmt[] = {
 	11,
 	12,
 	13,
-	38,
+	39,
+	48,
+	49,
+	50,
+	51,
+	52,
+	53,
 	54,
 	55,
 	56,
 	57,
-	58,
-	59,
-	113,
-	114,
 	115,
 	116,
 	117,
@@ -742,8 +734,8 @@ static short _decode_stmt[] = {
 	125,
 	126,
 	127,
-	131,
-	132,
+	128,
+	129,
 	133,
 	134,
 	135,
@@ -752,6 +744,8 @@ static short _decode_stmt[] = {
 	138,
 	139,
 	140,
+	141,
+	142,
 };
 
 static short _decode_reg[] = {
@@ -764,9 +758,16 @@ static short _decode_reg[] = {
 	6,
 	7,
 	21,
-	36,
-	51,
-	53,
+	22,
+	23,
+	24,
+	25,
+	26,
+	43,
+	44,
+	47,
+	58,
+	59,
 	60,
 	61,
 	62,
@@ -820,9 +821,11 @@ static short _decode_reg[] = {
 	110,
 	111,
 	112,
-	128,
-	129,
+	113,
+	114,
 	130,
+	131,
+	132,
 };
 
 static short _decode_con[] = {
@@ -834,20 +837,10 @@ static short _decode_con[] = {
 	18,
 	19,
 	20,
-	37,
-};
-
-static short _decode_reg0[] = {
-	0,
-	22,
-	23,
 };
 
 static short _decode_conIR[] = {
 	0,
-	24,
-	25,
-	26,
 	27,
 	28,
 	29,
@@ -857,51 +850,34 @@ static short _decode_conIR[] = {
 	33,
 	34,
 	35,
+	36,
+	37,
+	38,
 };
 
 static short _decode_acon[] = {
 	0,
-	39,
-};
-
-static short _decode_laddr[] = {
-	0,
 	40,
-	41,
 };
 
 static short _decode_addr[] = {
 	0,
+	41,
 	42,
-	44,
-	49,
 };
 
 static short _decode_jaddr[] = {
 	0,
-	43,
-};
-
-static short _decode_base[] = {
-	0,
 	45,
-	46,
-	47,
-	48,
-};
-
-static short _decode_baddr[] = {
-	0,
-	50,
 };
 
 static short _decode_index[] = {
 	0,
-	52,
+	46,
 };
 
 static int _rule(void *state, int goalnt) {
-	if (goalnt < 1 || goalnt > 12)
+	if (goalnt < 1 || goalnt > 8)
 		fatal("_rule", "Bad goal nonterminal %d\n", goalnt);
 	if (!state)
 		return 0;
@@ -909,14 +885,10 @@ static int _rule(void *state, int goalnt) {
 	case _stmt_NT:	return _decode_stmt[((struct _state *)state)->rule._stmt];
 	case _reg_NT:	return _decode_reg[((struct _state *)state)->rule._reg];
 	case _con_NT:	return _decode_con[((struct _state *)state)->rule._con];
-	case _reg0_NT:	return _decode_reg0[((struct _state *)state)->rule._reg0];
 	case _conIR_NT:	return _decode_conIR[((struct _state *)state)->rule._conIR];
 	case _acon_NT:	return _decode_acon[((struct _state *)state)->rule._acon];
-	case _laddr_NT:	return _decode_laddr[((struct _state *)state)->rule._laddr];
 	case _addr_NT:	return _decode_addr[((struct _state *)state)->rule._addr];
 	case _jaddr_NT:	return _decode_jaddr[((struct _state *)state)->rule._jaddr];
-	case _base_NT:	return _decode_base[((struct _state *)state)->rule._base];
-	case _baddr_NT:	return _decode_baddr[((struct _state *)state)->rule._baddr];
 	case _index_NT:	return _decode_index[((struct _state *)state)->rule._index];
 	default:
 		fatal("_rule", "Bad goal nonterminal %d\n", goalnt);
@@ -926,25 +898,9 @@ static int _rule(void *state, int goalnt) {
 
 static void _closure_reg(NODEPTR_TYPE, int);
 static void _closure_con(NODEPTR_TYPE, int);
-static void _closure_reg0(NODEPTR_TYPE, int);
-static void _closure_conIR(NODEPTR_TYPE, int);
-static void _closure_laddr(NODEPTR_TYPE, int);
-static void _closure_jaddr(NODEPTR_TYPE, int);
-static void _closure_base(NODEPTR_TYPE, int);
-static void _closure_baddr(NODEPTR_TYPE, int);
 
 static void _closure_reg(NODEPTR_TYPE a, int c) {
 	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_baddr_NT]) {
-		p->cost[_baddr_NT] = c + 0;
-		p->rule._baddr = 1;
-		_closure_baddr(a, c + 0);
-	}
-	if (c + 0 < p->cost[_base_NT]) {
-		p->cost[_base_NT] = c + 0;
-		p->rule._base = 4;
-		_closure_base(a, c + 0);
-	}
 	if (c + 0 < p->cost[_stmt_NT]) {
 		p->cost[_stmt_NT] = c + 0;
 		p->rule._stmt = 7;
@@ -957,61 +913,10 @@ static void _closure_con(NODEPTR_TYPE a, int c) {
 		p->cost[_acon_NT] = c + 0;
 		p->rule._acon = 1;
 	}
-	if (c + 1 < p->cost[_reg_NT]) {
-		p->cost[_reg_NT] = c + 1;
+	if (c + 2 < p->cost[_reg_NT]) {
+		p->cost[_reg_NT] = c + 2;
 		p->rule._reg = 8;
-		_closure_reg(a, c + 1);
-	}
-}
-
-static void _closure_reg0(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_reg_NT]) {
-		p->cost[_reg_NT] = c + 0;
-		p->rule._reg = 9;
-		_closure_reg(a, c + 0);
-	}
-}
-
-static void _closure_conIR(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_con_NT]) {
-		p->cost[_con_NT] = c + 0;
-		p->rule._con = 8;
-		_closure_con(a, c + 0);
-	}
-}
-
-static void _closure_laddr(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_addr_NT]) {
-		p->cost[_addr_NT] = c + 0;
-		p->rule._addr = 1;
-	}
-}
-
-static void _closure_jaddr(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_addr_NT]) {
-		p->cost[_addr_NT] = c + 0;
-		p->rule._addr = 2;
-	}
-}
-
-static void _closure_base(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 1 < p->cost[_reg_NT]) {
-		p->cost[_reg_NT] = c + 1;
-		p->rule._reg = 10;
-		_closure_reg(a, c + 1);
-	}
-}
-
-static void _closure_baddr(NODEPTR_TYPE a, int c) {
-	struct _state *p = STATE_LABEL(a);
-	if (c + 0 < p->cost[_addr_NT]) {
-		p->cost[_addr_NT] = c + 0;
-		p->rule._addr = 3;
+		_closure_reg(a, c + 2);
 	}
 }
 
@@ -1031,10 +936,6 @@ static void _label(NODEPTR_TYPE a) {
 	p->cost[6] =
 	p->cost[7] =
 	p->cost[8] =
-	p->cost[9] =
-	p->cost[10] =
-	p->cost[11] =
-	p->cost[12] =
 		0x7fff;
 	switch (OP_LABEL(a)) {
 	case 41: /* ARGB */
@@ -1045,7 +946,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_reg_NT] + 1;
 			if (c + 0 < p->cost[_stmt_NT]) {
 				p->cost[_stmt_NT] = c + 0;
-				p->rule._stmt = 37;
+				p->rule._stmt = 41;
 			}
 		}
 		break;
@@ -1058,7 +959,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(LEFT_CHILD(RIGHT_CHILD(a))->x.state))->cost[_reg_NT] + 1;
 			if (c + 0 < p->cost[_stmt_NT]) {
 				p->cost[_stmt_NT] = c + 0;
-				p->rule._stmt = 38;
+				p->rule._stmt = 42;
 			}
 		}
 		break;
@@ -1071,7 +972,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_jaddr_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 29;
+			p->rule._stmt = 33;
 		}
 		break;
 	case 217: /* CALLB */
@@ -1084,7 +985,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 33;
+			p->rule._stmt = 37;
 		}
 		break;
 	case 584: /* JUMPV */
@@ -1093,20 +994,20 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_acon_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 15;
+			p->rule._stmt = 19;
 		}
 		/* stmt: JUMPV(reg) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 16;
+			p->rule._stmt = 20;
 		}
 		break;
 	case 600: /* LABELV */
 		/* stmt: LABELV */
 		if (0 + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = 0 + 0;
-			p->rule._stmt = 14;
+			p->rule._stmt = 18;
 		}
 		break;
 	case 711: /* VREGP */
@@ -1118,6 +1019,13 @@ static void _label(NODEPTR_TYPE a) {
 			p->rule._con = 1;
 			_closure_con(a, 0 + 0);
 		}
+		/* reg: CNSTI1 */
+		c = (range(a, 0, 0));
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 9;
+			_closure_reg(a, c + 0);
+		}
 		break;
 	case 1046: /* CNSTU1 */
 		/* con: CNSTU1 */
@@ -1125,6 +1033,13 @@ static void _label(NODEPTR_TYPE a) {
 			p->cost[_con_NT] = 0 + 0;
 			p->rule._con = 2;
 			_closure_con(a, 0 + 0);
+		}
+		/* reg: CNSTU1 */
+		c = (range(a, 0, 0));
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 11;
+			_closure_reg(a, c + 0);
 		}
 		break;
 	case 1077: /* ASGNI1 */
@@ -1145,6 +1060,12 @@ static void _label(NODEPTR_TYPE a) {
 			p->cost[_stmt_NT] = c + 0;
 			p->rule._stmt = 8;
 		}
+		/* stmt: ASGNI1(reg,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_stmt_NT]) {
+			p->cost[_stmt_NT] = c + 0;
+			p->rule._stmt = 13;
+		}
 		break;
 	case 1078: /* ASGNU1 */
 		_label(LEFT_CHILD(a));
@@ -1163,6 +1084,12 @@ static void _label(NODEPTR_TYPE a) {
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
 			p->rule._stmt = 9;
+		}
+		/* stmt: ASGNU1(reg,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_stmt_NT]) {
+			p->cost[_stmt_NT] = c + 0;
+			p->rule._stmt = 14;
 		}
 		break;
 	case 1093: /* INDIRI1 */
@@ -1184,10 +1111,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -1196,10 +1119,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -1207,14 +1126,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -1232,7 +1143,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 12;
+			p->rule._reg = 17;
+			_closure_reg(a, c + 0);
+		}
+		/* reg: INDIRI1(reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 22;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1255,10 +1173,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -1267,10 +1181,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -1278,14 +1188,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -1303,7 +1205,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 13;
+			p->rule._reg = 18;
+			_closure_reg(a, c + 0);
+		}
+		/* reg: INDIRU1(reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 23;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1321,7 +1230,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 55;
+			p->rule._reg = 64;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1331,7 +1240,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 56;
+			p->rule._reg = 65;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1342,68 +1251,60 @@ static void _label(NODEPTR_TYPE a) {
 			p->rule._con = 3;
 			_closure_con(a, 0 + 0);
 		}
-		/* reg0: CNSTI2 */
+		/* reg: CNSTI2 */
 		c = (range(a, 0, 0));
-		if (c + 0 < p->cost[_reg0_NT]) {
-			p->cost[_reg0_NT] = c + 0;
-			p->rule._reg0 = 1;
-			_closure_reg0(a, c + 0);
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 10;
+			_closure_reg(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, 1, 1));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 1;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, 2, 2));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 2;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, 4, 4));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 3;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, 8, 8));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 4;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, -1, -1));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 9;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, -2, -2));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 10;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, -4, -4));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 11;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTI2 */
 		c = (range(a, -8, -8));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 12;
-			_closure_conIR(a, c + 0);
 		}
 		break;
 	case 2070: /* CNSTU2 */
@@ -1413,40 +1314,36 @@ static void _label(NODEPTR_TYPE a) {
 			p->rule._con = 4;
 			_closure_con(a, 0 + 0);
 		}
-		/* reg0: CNSTU2 */
+		/* reg: CNSTU2 */
 		c = (range(a, 0, 0));
-		if (c + 0 < p->cost[_reg0_NT]) {
-			p->cost[_reg0_NT] = c + 0;
-			p->rule._reg0 = 2;
-			_closure_reg0(a, c + 0);
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 12;
+			_closure_reg(a, c + 0);
 		}
 		/* conIR: CNSTU2 */
 		c = (range(a, 1, 1));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 5;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTU2 */
 		c = (range(a, 2, 2));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 6;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTU2 */
 		c = (range(a, 4, 4));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 7;
-			_closure_conIR(a, c + 0);
 		}
 		/* conIR: CNSTU2 */
 		c = (range(a, 8, 8));
 		if (c + 0 < p->cost[_conIR_NT]) {
 			p->cost[_conIR_NT] = c + 0;
 			p->rule._conIR = 8;
-			_closure_conIR(a, c + 0);
 		}
 		break;
 	case 2071: /* CNSTP2 */
@@ -1456,6 +1353,13 @@ static void _label(NODEPTR_TYPE a) {
 			p->rule._con = 7;
 			_closure_con(a, 0 + 0);
 		}
+		/* reg: CNSTP2 */
+		c = (range(a, 0, 0));
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 13;
+			_closure_reg(a, c + 0);
+		}
 		break;
 	case 2085: /* ARGI2 */
 		_label(LEFT_CHILD(a));
@@ -1463,7 +1367,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 34;
+			p->rule._stmt = 38;
 		}
 		break;
 	case 2086: /* ARGU2 */
@@ -1472,7 +1376,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 35;
+			p->rule._stmt = 39;
 		}
 		break;
 	case 2087: /* ARGP2 */
@@ -1481,7 +1385,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 36;
+			p->rule._stmt = 40;
 		}
 		break;
 	case 2101: /* ASGNI2 */
@@ -1496,17 +1400,17 @@ static void _label(NODEPTR_TYPE a) {
 				p->rule._stmt = 3;
 			}
 		}
-		/* stmt: ASGNI2(laddr,reg) */
-		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_laddr_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
+		/* stmt: ASGNI2(addr,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
 			p->rule._stmt = 10;
 		}
-		/* stmt: ASGNI2(baddr,reg) */
-		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_baddr_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
+		/* stmt: ASGNI2(reg,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 11;
+			p->rule._stmt = 15;
 		}
 		break;
 	case 2102: /* ASGNU2 */
@@ -1525,7 +1429,13 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 12;
+			p->rule._stmt = 11;
+		}
+		/* stmt: ASGNU2(reg,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_stmt_NT]) {
+			p->cost[_stmt_NT] = c + 0;
+			p->rule._stmt = 16;
 		}
 		break;
 	case 2103: /* ASGNP2 */
@@ -1535,7 +1445,13 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 13;
+			p->rule._stmt = 12;
+		}
+		/* stmt: ASGNP2(reg,reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_stmt_NT]) {
+			p->cost[_stmt_NT] = c + 0;
+			p->rule._stmt = 17;
 		}
 		break;
 	case 2117: /* INDIRI2 */
@@ -1557,10 +1473,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -1569,10 +1481,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -1580,14 +1488,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -1607,22 +1507,22 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_index_NT] + ((struct _state *)(RIGHT_CHILD(LEFT_CHILD(a))->x.state))->cost[_reg_NT] + 1;
 			if (c + 0 < p->cost[_reg_NT]) {
 				p->cost[_reg_NT] = c + 0;
-				p->rule._reg = 11;
+				p->rule._reg = 16;
 				_closure_reg(a, c + 0);
 			}
 		}
-		/* reg: INDIRI2(laddr) */
-		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_laddr_NT] + 1;
+		/* reg: INDIRI2(addr) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 14;
+			p->rule._reg = 19;
 			_closure_reg(a, c + 0);
 		}
-		/* reg: INDIRI2(baddr) */
-		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_baddr_NT] + 2;
+		/* reg: INDIRI2(reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 15;
+			p->rule._reg = 24;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1645,10 +1545,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -1657,10 +1553,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -1668,14 +1560,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -1693,7 +1577,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 16;
+			p->rule._reg = 20;
+			_closure_reg(a, c + 0);
+		}
+		/* reg: INDIRU2(reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 25;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1716,10 +1607,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -1728,10 +1615,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -1739,14 +1622,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -1764,7 +1639,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_addr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 17;
+			p->rule._reg = 21;
+			_closure_reg(a, c + 0);
+		}
+		/* reg: INDIRP2(reg) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
+		if (c + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = c + 0;
+			p->rule._reg = 26;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1778,7 +1660,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_addr_NT] + 1;
 			if (c + 0 < p->cost[_reg_NT]) {
 				p->cost[_reg_NT] = c + 0;
-				p->rule._reg = 18;
+				p->rule._reg = 27;
 				_closure_reg(a, c + 0);
 			}
 		}
@@ -1786,7 +1668,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 2;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 62;
+			p->rule._reg = 71;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1802,7 +1684,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_addr_NT] + 1;
 			if (c + 0 < p->cost[_reg_NT]) {
 				p->cost[_reg_NT] = c + 0;
-				p->rule._reg = 20;
+				p->rule._reg = 29;
 				_closure_reg(a, c + 0);
 			}
 		}
@@ -1812,7 +1694,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_addr_NT] + 1;
 			if (c + 0 < p->cost[_reg_NT]) {
 				p->cost[_reg_NT] = c + 0;
-				p->rule._reg = 21;
+				p->rule._reg = 30;
 				_closure_reg(a, c + 0);
 			}
 		}
@@ -1820,7 +1702,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 63;
+			p->rule._reg = 72;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1832,7 +1714,7 @@ static void _label(NODEPTR_TYPE a) {
 			c = ((struct _state *)(LEFT_CHILD(LEFT_CHILD(a))->x.state))->cost[_addr_NT] + 1;
 			if (c + 0 < p->cost[_reg_NT]) {
 				p->cost[_reg_NT] = c + 0;
-				p->rule._reg = 19;
+				p->rule._reg = 28;
 				_closure_reg(a, c + 0);
 			}
 		}
@@ -1840,7 +1722,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 64;
+			p->rule._reg = 73;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1852,7 +1734,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 54;
+			p->rule._reg = 63;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1862,7 +1744,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_jaddr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 65;
+			p->rule._reg = 74;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1872,7 +1754,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_jaddr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 67;
+			p->rule._reg = 76;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1882,7 +1764,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_jaddr_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 66;
+			p->rule._reg = 75;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1892,7 +1774,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 57;
+			p->rule._reg = 66;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1902,7 +1784,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 58;
+			p->rule._reg = 67;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1912,7 +1794,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 60;
+			p->rule._reg = 69;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -1922,7 +1804,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 30;
+			p->rule._stmt = 34;
 		}
 		break;
 	case 2294: /* RETU2 */
@@ -1931,7 +1813,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 31;
+			p->rule._stmt = 35;
 		}
 		break;
 	case 2295: /* RETP2 */
@@ -1940,51 +1822,42 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 32;
+			p->rule._stmt = 36;
 		}
 		break;
 	case 2311: /* ADDRGP2 */
+		/* reg: ADDRGP2 */
+		if (1 + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = 1 + 0;
+			p->rule._reg = 15;
+			_closure_reg(a, 1 + 0);
+		}
 		/* jaddr: ADDRGP2 */
 		if (0 + 0 < p->cost[_jaddr_NT]) {
 			p->cost[_jaddr_NT] = 0 + 0;
 			p->rule._jaddr = 1;
-			_closure_jaddr(a, 0 + 0);
-		}
-		/* base: ADDRGP2 */
-		if (0 + 0 < p->cost[_base_NT]) {
-			p->cost[_base_NT] = 0 + 0;
-			p->rule._base = 1;
-			_closure_base(a, 0 + 0);
 		}
 		break;
 	case 2327: /* ADDRFP2 */
-		/* laddr: ADDRFP2 */
+		/* addr: ADDRFP2 */
 		c = (range(a, -63, 63));
-		if (c + 0 < p->cost[_laddr_NT]) {
-			p->cost[_laddr_NT] = c + 0;
-			p->rule._laddr = 1;
-			_closure_laddr(a, c + 0);
-		}
-		/* base: ADDRFP2 */
-		if (0 + 0 < p->cost[_base_NT]) {
-			p->cost[_base_NT] = 0 + 0;
-			p->rule._base = 3;
-			_closure_base(a, 0 + 0);
+		if (c + 0 < p->cost[_addr_NT]) {
+			p->cost[_addr_NT] = c + 0;
+			p->rule._addr = 1;
 		}
 		break;
 	case 2343: /* ADDRLP2 */
-		/* laddr: ADDRLP2 */
+		/* addr: ADDRLP2 */
 		c = (range(a, -63, 63));
-		if (c + 0 < p->cost[_laddr_NT]) {
-			p->cost[_laddr_NT] = c + 0;
-			p->rule._laddr = 2;
-			_closure_laddr(a, c + 0);
+		if (c + 0 < p->cost[_addr_NT]) {
+			p->cost[_addr_NT] = c + 0;
+			p->rule._addr = 2;
 		}
-		/* base: ADDRLP2 */
-		if (0 + 0 < p->cost[_base_NT]) {
-			p->cost[_base_NT] = 0 + 0;
-			p->rule._base = 2;
-			_closure_base(a, 0 + 0);
+		/* reg: ADDRLP2 */
+		if (2 + 0 < p->cost[_reg_NT]) {
+			p->cost[_reg_NT] = 2 + 0;
+			p->rule._reg = 14;
+			_closure_reg(a, 2 + 0);
 		}
 		break;
 	case 2357: /* ADDI2 */
@@ -1994,14 +1867,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 28;
+			p->rule._reg = 37;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: ADDI2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 31;
+			p->rule._reg = 40;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2012,14 +1885,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 30;
+			p->rule._reg = 39;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: ADDU2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 33;
+			p->rule._reg = 42;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2030,14 +1903,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 29;
+			p->rule._reg = 38;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: ADDP2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 32;
+			p->rule._reg = 41;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2048,14 +1921,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 34;
+			p->rule._reg = 43;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: SUBI2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 37;
+			p->rule._reg = 46;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2066,14 +1939,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 36;
+			p->rule._reg = 45;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: SUBU2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 39;
+			p->rule._reg = 48;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2084,22 +1957,22 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 35;
+			p->rule._reg = 44;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: SUBP2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 38;
+			p->rule._reg = 47;
 			_closure_reg(a, c + 0);
 		}
 		break;
 	case 2389: /* LSHI2 */
 		_label(LEFT_CHILD(a));
 		_label(RIGHT_CHILD(a));
-		/* index: LSHI2(reg,conIR) */
-		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
+		/* index: LSHI2(reg,con) */
+		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_con_NT] + 1;
 		if (c + 0 < p->cost[_index_NT]) {
 			p->cost[_index_NT] = c + 0;
 			p->rule._index = 1;
@@ -2114,7 +1987,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 24;
+			p->rule._reg = 33;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2125,7 +1998,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 25;
+			p->rule._reg = 34;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2140,14 +2013,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 40;
+			p->rule._reg = 49;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BANDI2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 46;
+			p->rule._reg = 55;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2158,14 +2031,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 43;
+			p->rule._reg = 52;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BANDU2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 49;
+			p->rule._reg = 58;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2175,7 +2048,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 52;
+			p->rule._reg = 61;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2185,7 +2058,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 53;
+			p->rule._reg = 62;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2196,14 +2069,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 41;
+			p->rule._reg = 50;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BORI2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 47;
+			p->rule._reg = 56;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2214,14 +2087,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 44;
+			p->rule._reg = 53;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BORU2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 50;
+			p->rule._reg = 59;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2232,14 +2105,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 42;
+			p->rule._reg = 51;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BXORI2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 48;
+			p->rule._reg = 57;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2250,14 +2123,14 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 45;
+			p->rule._reg = 54;
 			_closure_reg(a, c + 0);
 		}
 		/* reg: BXORU2(reg,conIR) */
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_conIR_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 51;
+			p->rule._reg = 60;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2268,7 +2141,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 22;
+			p->rule._reg = 31;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2279,7 +2152,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 23;
+			p->rule._reg = 32;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2290,7 +2163,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 26;
+			p->rule._reg = 35;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2301,7 +2174,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 27;
+			p->rule._reg = 36;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2312,7 +2185,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 17;
+			p->rule._stmt = 21;
 		}
 		break;
 	case 2534: /* EQU2 */
@@ -2322,7 +2195,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 18;
+			p->rule._stmt = 22;
 		}
 		break;
 	case 2549: /* GEI2 */
@@ -2332,7 +2205,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 19;
+			p->rule._stmt = 23;
 		}
 		break;
 	case 2550: /* GEU2 */
@@ -2342,7 +2215,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 20;
+			p->rule._stmt = 24;
 		}
 		break;
 	case 2565: /* GTI2 */
@@ -2352,7 +2225,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 21;
+			p->rule._stmt = 25;
 		}
 		break;
 	case 2566: /* GTU2 */
@@ -2362,7 +2235,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 22;
+			p->rule._stmt = 26;
 		}
 		break;
 	case 2581: /* LEI2 */
@@ -2372,7 +2245,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 23;
+			p->rule._stmt = 27;
 		}
 		break;
 	case 2582: /* LEU2 */
@@ -2382,7 +2255,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 24;
+			p->rule._stmt = 28;
 		}
 		break;
 	case 2597: /* LTI2 */
@@ -2392,7 +2265,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 25;
+			p->rule._stmt = 29;
 		}
 		break;
 	case 2598: /* LTU2 */
@@ -2402,7 +2275,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 26;
+			p->rule._stmt = 30;
 		}
 		break;
 	case 2613: /* NEI2 */
@@ -2412,7 +2285,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 27;
+			p->rule._stmt = 31;
 		}
 		break;
 	case 2614: /* NEU2 */
@@ -2422,7 +2295,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + ((struct _state *)(RIGHT_CHILD(a)->x.state))->cost[_reg_NT] + 1;
 		if (c + 0 < p->cost[_stmt_NT]) {
 			p->cost[_stmt_NT] = c + 0;
-			p->rule._stmt = 28;
+			p->rule._stmt = 32;
 		}
 		break;
 	case 4113: /* CNSTF4 */
@@ -2498,10 +2371,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -2510,10 +2379,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -2521,14 +2386,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -2562,10 +2419,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_con_NT] = 0;
 					p->rule._con = q->rule._con;
 				}
-				if (q->cost[_reg0_NT] == 0) {
-					p->cost[_reg0_NT] = 0;
-					p->rule._reg0 = q->rule._reg0;
-				}
 				if (q->cost[_conIR_NT] == 0) {
 					p->cost[_conIR_NT] = 0;
 					p->rule._conIR = q->rule._conIR;
@@ -2574,10 +2427,6 @@ static void _label(NODEPTR_TYPE a) {
 					p->cost[_acon_NT] = 0;
 					p->rule._acon = q->rule._acon;
 				}
-				if (q->cost[_laddr_NT] == 0) {
-					p->cost[_laddr_NT] = 0;
-					p->rule._laddr = q->rule._laddr;
-				}
 				if (q->cost[_addr_NT] == 0) {
 					p->cost[_addr_NT] = 0;
 					p->rule._addr = q->rule._addr;
@@ -2585,14 +2434,6 @@ static void _label(NODEPTR_TYPE a) {
 				if (q->cost[_jaddr_NT] == 0) {
 					p->cost[_jaddr_NT] = 0;
 					p->rule._jaddr = q->rule._jaddr;
-				}
-				if (q->cost[_base_NT] == 0) {
-					p->cost[_base_NT] = 0;
-					p->rule._base = q->rule._base;
-				}
-				if (q->cost[_baddr_NT] == 0) {
-					p->cost[_baddr_NT] = 0;
-					p->rule._baddr = q->rule._baddr;
 				}
 				if (q->cost[_index_NT] == 0) {
 					p->cost[_index_NT] = 0;
@@ -2637,7 +2478,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 59;
+			p->rule._reg = 68;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2647,7 +2488,7 @@ static void _label(NODEPTR_TYPE a) {
 		c = ((struct _state *)(LEFT_CHILD(a)->x.state))->cost[_reg_NT] + (move(a));
 		if (c + 0 < p->cost[_reg_NT]) {
 			p->cost[_reg_NT] = c + 0;
-			p->rule._reg = 61;
+			p->rule._reg = 70;
 			_closure_reg(a, c + 0);
 		}
 		break;
@@ -2936,27 +2777,29 @@ static void _kids(NODEPTR_TYPE p, int eruleno, NODEPTR_TYPE kids[]) {
 	if (!kids)
 		fatal("_kids", "Null kids\n", 0);
 	switch (eruleno) {
-	case 113: /* stmt: LABELV */
-	case 47: /* base: ADDRFP2 */
-	case 46: /* base: ADDRLP2 */
-	case 45: /* base: ADDRGP2 */
-	case 43: /* jaddr: ADDRGP2 */
-	case 41: /* laddr: ADDRLP2 */
-	case 40: /* laddr: ADDRFP2 */
+	case 115: /* stmt: LABELV */
+	case 45: /* jaddr: ADDRGP2 */
+	case 44: /* reg: ADDRGP2 */
+	case 43: /* reg: ADDRLP2 */
+	case 42: /* addr: ADDRLP2 */
+	case 41: /* addr: ADDRFP2 */
+	case 38: /* conIR: CNSTI2 */
+	case 37: /* conIR: CNSTI2 */
+	case 36: /* conIR: CNSTI2 */
 	case 35: /* conIR: CNSTI2 */
-	case 34: /* conIR: CNSTI2 */
-	case 33: /* conIR: CNSTI2 */
-	case 32: /* conIR: CNSTI2 */
+	case 34: /* conIR: CNSTU2 */
+	case 33: /* conIR: CNSTU2 */
+	case 32: /* conIR: CNSTU2 */
 	case 31: /* conIR: CNSTU2 */
-	case 30: /* conIR: CNSTU2 */
-	case 29: /* conIR: CNSTU2 */
-	case 28: /* conIR: CNSTU2 */
+	case 30: /* conIR: CNSTI2 */
+	case 29: /* conIR: CNSTI2 */
+	case 28: /* conIR: CNSTI2 */
 	case 27: /* conIR: CNSTI2 */
-	case 26: /* conIR: CNSTI2 */
-	case 25: /* conIR: CNSTI2 */
-	case 24: /* conIR: CNSTI2 */
-	case 23: /* reg0: CNSTU2 */
-	case 22: /* reg0: CNSTI2 */
+	case 26: /* reg: CNSTP2 */
+	case 25: /* reg: CNSTU2 */
+	case 24: /* reg: CNSTU1 */
+	case 23: /* reg: CNSTI2 */
+	case 22: /* reg: CNSTI1 */
 	case 20: /* con: CNSTP2 */
 	case 19: /* con: CNSTU4 */
 	case 18: /* con: CNSTI4 */
@@ -2980,117 +2823,117 @@ static void _kids(NODEPTR_TYPE p, int eruleno, NODEPTR_TYPE kids[]) {
 	case 8: /* stmt: ASGNI1(VREGP,reg) */
 		kids[0] = RIGHT_CHILD(p);
 		break;
-	case 51: /* reg: base */
-	case 50: /* baddr: reg */
-	case 49: /* addr: baddr */
-	case 48: /* base: reg */
-	case 44: /* addr: jaddr */
-	case 42: /* addr: laddr */
-	case 39: /* acon: con */
-	case 38: /* stmt: reg */
-	case 37: /* con: conIR */
-	case 36: /* reg: reg0 */
+	case 40: /* acon: con */
+	case 39: /* stmt: reg */
 	case 21: /* reg: con */
 		kids[0] = p;
 		break;
-	case 127: /* stmt: NEU2(reg,reg) */
-	case 126: /* stmt: NEI2(reg,reg) */
-	case 125: /* stmt: LTU2(reg,reg) */
-	case 124: /* stmt: LTI2(reg,reg) */
-	case 123: /* stmt: LEU2(reg,reg) */
-	case 122: /* stmt: LEI2(reg,reg) */
-	case 121: /* stmt: GTU2(reg,reg) */
-	case 120: /* stmt: GTI2(reg,reg) */
-	case 119: /* stmt: GEU2(reg,reg) */
-	case 118: /* stmt: GEI2(reg,reg) */
-	case 117: /* stmt: EQU2(reg,reg) */
-	case 116: /* stmt: EQI2(reg,reg) */
-	case 99: /* reg: BXORU2(reg,conIR) */
-	case 98: /* reg: BORU2(reg,conIR) */
-	case 97: /* reg: BANDU2(reg,conIR) */
-	case 96: /* reg: BXORI2(reg,conIR) */
-	case 95: /* reg: BORI2(reg,conIR) */
-	case 94: /* reg: BANDI2(reg,conIR) */
-	case 93: /* reg: BXORU2(reg,reg) */
-	case 92: /* reg: BORU2(reg,reg) */
-	case 91: /* reg: BANDU2(reg,reg) */
-	case 90: /* reg: BXORI2(reg,reg) */
-	case 89: /* reg: BORI2(reg,reg) */
-	case 88: /* reg: BANDI2(reg,reg) */
-	case 87: /* reg: SUBU2(reg,conIR) */
-	case 86: /* reg: SUBP2(reg,conIR) */
-	case 85: /* reg: SUBI2(reg,conIR) */
-	case 84: /* reg: SUBU2(reg,reg) */
-	case 83: /* reg: SUBP2(reg,reg) */
-	case 82: /* reg: SUBI2(reg,reg) */
-	case 81: /* reg: ADDU2(reg,conIR) */
-	case 80: /* reg: ADDP2(reg,conIR) */
-	case 79: /* reg: ADDI2(reg,conIR) */
-	case 78: /* reg: ADDU2(reg,reg) */
-	case 77: /* reg: ADDP2(reg,reg) */
-	case 76: /* reg: ADDI2(reg,reg) */
-	case 75: /* reg: MULU2(reg,reg) */
-	case 74: /* reg: MULI2(reg,reg) */
-	case 73: /* reg: MODU2(reg,reg) */
-	case 72: /* reg: MODI2(reg,reg) */
-	case 71: /* reg: DIVU2(reg,reg) */
-	case 70: /* reg: DIVI2(reg,reg) */
-	case 59: /* stmt: ASGNP2(addr,reg) */
-	case 58: /* stmt: ASGNU2(addr,reg) */
-	case 57: /* stmt: ASGNI2(baddr,reg) */
-	case 56: /* stmt: ASGNI2(laddr,reg) */
-	case 55: /* stmt: ASGNU1(addr,reg) */
-	case 54: /* stmt: ASGNI1(addr,reg) */
-	case 52: /* index: LSHI2(reg,conIR) */
+	case 129: /* stmt: NEU2(reg,reg) */
+	case 128: /* stmt: NEI2(reg,reg) */
+	case 127: /* stmt: LTU2(reg,reg) */
+	case 126: /* stmt: LTI2(reg,reg) */
+	case 125: /* stmt: LEU2(reg,reg) */
+	case 124: /* stmt: LEI2(reg,reg) */
+	case 123: /* stmt: GTU2(reg,reg) */
+	case 122: /* stmt: GTI2(reg,reg) */
+	case 121: /* stmt: GEU2(reg,reg) */
+	case 120: /* stmt: GEI2(reg,reg) */
+	case 119: /* stmt: EQU2(reg,reg) */
+	case 118: /* stmt: EQI2(reg,reg) */
+	case 101: /* reg: BXORU2(reg,conIR) */
+	case 100: /* reg: BORU2(reg,conIR) */
+	case 99: /* reg: BANDU2(reg,conIR) */
+	case 98: /* reg: BXORI2(reg,conIR) */
+	case 97: /* reg: BORI2(reg,conIR) */
+	case 96: /* reg: BANDI2(reg,conIR) */
+	case 95: /* reg: BXORU2(reg,reg) */
+	case 94: /* reg: BORU2(reg,reg) */
+	case 93: /* reg: BANDU2(reg,reg) */
+	case 92: /* reg: BXORI2(reg,reg) */
+	case 91: /* reg: BORI2(reg,reg) */
+	case 90: /* reg: BANDI2(reg,reg) */
+	case 89: /* reg: SUBU2(reg,conIR) */
+	case 88: /* reg: SUBP2(reg,conIR) */
+	case 87: /* reg: SUBI2(reg,conIR) */
+	case 86: /* reg: SUBU2(reg,reg) */
+	case 85: /* reg: SUBP2(reg,reg) */
+	case 84: /* reg: SUBI2(reg,reg) */
+	case 83: /* reg: ADDU2(reg,conIR) */
+	case 82: /* reg: ADDP2(reg,conIR) */
+	case 81: /* reg: ADDI2(reg,conIR) */
+	case 80: /* reg: ADDU2(reg,reg) */
+	case 79: /* reg: ADDP2(reg,reg) */
+	case 78: /* reg: ADDI2(reg,reg) */
+	case 77: /* reg: MULU2(reg,reg) */
+	case 76: /* reg: MULI2(reg,reg) */
+	case 75: /* reg: MODU2(reg,reg) */
+	case 74: /* reg: MODI2(reg,reg) */
+	case 73: /* reg: DIVU2(reg,reg) */
+	case 72: /* reg: DIVI2(reg,reg) */
+	case 57: /* stmt: ASGNP2(reg,reg) */
+	case 56: /* stmt: ASGNU2(reg,reg) */
+	case 55: /* stmt: ASGNI2(reg,reg) */
+	case 54: /* stmt: ASGNU1(reg,reg) */
+	case 53: /* stmt: ASGNI1(reg,reg) */
+	case 52: /* stmt: ASGNP2(addr,reg) */
+	case 51: /* stmt: ASGNU2(addr,reg) */
+	case 50: /* stmt: ASGNI2(addr,reg) */
+	case 49: /* stmt: ASGNU1(addr,reg) */
+	case 48: /* stmt: ASGNI1(addr,reg) */
+	case 46: /* index: LSHI2(reg,con) */
 		kids[0] = LEFT_CHILD(p);
 		kids[1] = RIGHT_CHILD(p);
 		break;
-	case 53: /* reg: INDIRI2(ADDP2(index,reg)) */
+	case 47: /* reg: INDIRI2(ADDP2(index,reg)) */
 		kids[0] = LEFT_CHILD(LEFT_CHILD(p));
 		kids[1] = RIGHT_CHILD(LEFT_CHILD(p));
 		break;
-	case 138: /* stmt: ARGP2(reg) */
-	case 137: /* stmt: ARGU2(reg) */
-	case 136: /* stmt: ARGI2(reg) */
-	case 135: /* stmt: RETV(reg) */
-	case 134: /* stmt: RETP2(reg) */
-	case 133: /* stmt: RETU2(reg) */
-	case 132: /* stmt: RETI2(reg) */
-	case 131: /* stmt: CALLV(jaddr) */
-	case 130: /* reg: CALLU2(jaddr) */
-	case 129: /* reg: CALLP2(jaddr) */
-	case 128: /* reg: CALLI2(jaddr) */
-	case 115: /* stmt: JUMPV(reg) */
-	case 114: /* stmt: JUMPV(acon) */
-	case 112: /* reg: CVUU2(reg) */
-	case 111: /* reg: CVUI2(reg) */
-	case 110: /* reg: CVII2(reg) */
-	case 109: /* reg: LOADU4(reg) */
-	case 108: /* reg: LOADP2(reg) */
-	case 107: /* reg: LOADI4(reg) */
-	case 106: /* reg: LOADU2(reg) */
-	case 105: /* reg: LOADI2(reg) */
-	case 104: /* reg: LOADU1(reg) */
-	case 103: /* reg: LOADI1(reg) */
-	case 102: /* reg: NEGI2(reg) */
-	case 101: /* reg: BCOMU2(reg) */
-	case 100: /* reg: BCOMI2(reg) */
-	case 65: /* reg: INDIRP2(addr) */
-	case 64: /* reg: INDIRU2(addr) */
-	case 63: /* reg: INDIRI2(baddr) */
-	case 62: /* reg: INDIRI2(laddr) */
-	case 61: /* reg: INDIRU1(addr) */
-	case 60: /* reg: INDIRI1(addr) */
+	case 140: /* stmt: ARGP2(reg) */
+	case 139: /* stmt: ARGU2(reg) */
+	case 138: /* stmt: ARGI2(reg) */
+	case 137: /* stmt: RETV(reg) */
+	case 136: /* stmt: RETP2(reg) */
+	case 135: /* stmt: RETU2(reg) */
+	case 134: /* stmt: RETI2(reg) */
+	case 133: /* stmt: CALLV(jaddr) */
+	case 132: /* reg: CALLU2(jaddr) */
+	case 131: /* reg: CALLP2(jaddr) */
+	case 130: /* reg: CALLI2(jaddr) */
+	case 117: /* stmt: JUMPV(reg) */
+	case 116: /* stmt: JUMPV(acon) */
+	case 114: /* reg: CVUU2(reg) */
+	case 113: /* reg: CVUI2(reg) */
+	case 112: /* reg: CVII2(reg) */
+	case 111: /* reg: LOADU4(reg) */
+	case 110: /* reg: LOADP2(reg) */
+	case 109: /* reg: LOADI4(reg) */
+	case 108: /* reg: LOADU2(reg) */
+	case 107: /* reg: LOADI2(reg) */
+	case 106: /* reg: LOADU1(reg) */
+	case 105: /* reg: LOADI1(reg) */
+	case 104: /* reg: NEGI2(reg) */
+	case 103: /* reg: BCOMU2(reg) */
+	case 102: /* reg: BCOMI2(reg) */
+	case 67: /* reg: INDIRP2(reg) */
+	case 66: /* reg: INDIRU2(reg) */
+	case 65: /* reg: INDIRI2(reg) */
+	case 64: /* reg: INDIRU1(reg) */
+	case 63: /* reg: INDIRI1(reg) */
+	case 62: /* reg: INDIRP2(addr) */
+	case 61: /* reg: INDIRU2(addr) */
+	case 60: /* reg: INDIRI2(addr) */
+	case 59: /* reg: INDIRU1(addr) */
+	case 58: /* reg: INDIRI1(addr) */
 		kids[0] = LEFT_CHILD(p);
 		break;
-	case 139: /* stmt: ARGB(INDIRB(reg)) */
-	case 69: /* reg: CVUI2(INDIRU2(addr)) */
-	case 68: /* reg: CVUI2(INDIRU1(addr)) */
-	case 67: /* reg: CVUU2(INDIRU1(addr)) */
-	case 66: /* reg: CVII2(INDIRI1(addr)) */
+	case 141: /* stmt: ARGB(INDIRB(reg)) */
+	case 71: /* reg: CVUI2(INDIRU2(addr)) */
+	case 70: /* reg: CVUI2(INDIRU1(addr)) */
+	case 69: /* reg: CVUU2(INDIRU1(addr)) */
+	case 68: /* reg: CVII2(INDIRI1(addr)) */
 		kids[0] = LEFT_CHILD(LEFT_CHILD(p));
 		break;
-	case 140: /* stmt: ASGNB(reg,INDIRB(reg)) */
+	case 142: /* stmt: ASGNB(reg,INDIRB(reg)) */
 		kids[0] = LEFT_CHILD(p);
 		kids[1] = LEFT_CHILD(RIGHT_CHILD(p));
 		break;
@@ -3120,7 +2963,7 @@ static void progbeg(int argc, char *argv[]) {
     //     longreg[R_L3] = mkreg("L3",R_L3,1,IREG);
 
     // Reg symbols
-    intreg[R0] = mkreg("xr0",R0,1,IREG);
+    intreg[R0] = mkreg("r0",R0,1,IREG);
     intreg[R1] = mkreg("r1",R1,1,IREG);
     intreg[R2] = mkreg("r2",R2,1,IREG);
     intreg[R3] = mkreg("r3",R3,1,IREG);
@@ -3140,8 +2983,8 @@ static void progbeg(int argc, char *argv[]) {
     //print("\n");
     print(";	DME assembly file, generated by lcc 4.2\n");
     print("\n");
-    print(";  temp boiler plate puts SP at 0x64 and branches to main\n");
-    print("\tld16\tr1, 0x1ffe\n");
+    print(";  temp boiler plate puts SP at 0x2000 and branches to main\n");
+    print("\tld16\tr1, 0x2000\n");
     print("\tmov\tsp, r1\n");
     print("\taddi\tr1, pc, 2\n");
     print("\tbr\t_main\n");
@@ -3176,9 +3019,9 @@ static Symbol rmap(int opk) {
 
 static void segment(int n) {
     if (n==current_seg)
-	return;
+			return;
     if (n == CODE)
-			print(";\t.cseg\n");
+			print(";\t.code\n");
     else if (n == DATA)
 			// FIXME: 0x1000 is just for LCC retargeting efforts
 			print("\t.data 0x1000\n");
@@ -3186,7 +3029,7 @@ static void segment(int n) {
 			print("\t.bss\n");
     else
 			print("\tERROR - unknown segment %d\n",n);
-    current_seg = n;
+    	current_seg = n;
 }
 
 // NOTE - remove these when I have a real linker.  It will take care of
@@ -3203,14 +3046,14 @@ static void target(Node p) {
     assert(p);
 
     switch (specific(p->op)) {
-    // case CNST+I:
-//     case CNST+U:
-//     case CNST+P:
-//       if (range(p, 0, 0) == 0) {
-//         setreg(p, intreg[0]);
-//         p->x.registered = 1;
-//       }
-//       break;
+    case CNST+I:
+    case CNST+U:
+    case CNST+P:
+      if (range(p, 0, 0) == 0) {
+        setreg(p, intreg[0]);
+        p->x.registered = 1;
+      }
+      break;
     case CALL+I:
     case CALL+U:
     case CALL+P:
@@ -3422,7 +3265,7 @@ static void defsymbol(Symbol p) {
     else if (p->scope == CONSTANTS
 	    && (isint(p->type) || isptr(p->type))
 	    && p->name[0] == '0' && p->name[1] == 'x')
-	p->x.name = stringf("0%sH", &p->name[2]);
+	p->x.name = stringf("0x%s", &p->name[2]);
     else
 	p->x.name = p->name;
 }

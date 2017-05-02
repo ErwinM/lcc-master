@@ -1,11 +1,10 @@
-int fib(int n) {
-	if (n < 2) {
-		return n;
-  }
-	return (fib(n-1) + fib(n-2));
+
+int adder(int k) {
+	return (k + 5);
 }
 
 int main() {
-	int i = 0;
-	return(fib(10));
+	int i;
+	i = adder(3);
+	return 0;
 }
