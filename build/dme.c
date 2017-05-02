@@ -63,7 +63,7 @@ static int current_seg;
 
 static int double_ptr = 0;
 /*
-generated at Tue May  2 23:10:02 2017
+generated at Tue May  2 23:18:11 2017
 by $Id$
 */
 static void _kids(NODEPTR_TYPE, int, NODEPTR_TYPE[]);
@@ -288,7 +288,7 @@ static char *_templates[] = {
 /* 20 */	"%a",	/* con: CNSTP2 */
 /* 21 */	"\tld16\t%c, %0\n",	/* reg: con */
 /* 22 */	"# reg\n",	/* reg: CNSTI1 */
-/* 23 */	"# reg\n",	/* reg: CNSTI2 */
+/* 23 */	" reg\n",	/* reg: CNSTI2 */
 /* 24 */	"# reg\n",	/* reg: CNSTU1 */
 /* 25 */	"# reg\n",	/* reg: CNSTU2 */
 /* 26 */	"# reg\n",	/* reg: CNSTP2 */
@@ -434,7 +434,7 @@ static char _isinstruction[] = {
 /* 20 */	0,	/* %a */
 /* 21 */	1,	/* \tld16\t%c, %0\n */
 /* 22 */	1,	/* # reg\n */
-/* 23 */	1,	/* # reg\n */
+/* 23 */	1,	/*  reg\n */
 /* 24 */	1,	/* # reg\n */
 /* 25 */	1,	/* # reg\n */
 /* 26 */	1,	/* # reg\n */

@@ -237,7 +237,7 @@ static int double_ptr = 0;
   reg: con "\tld16\t%c, %0\n" 2
 
 	reg: CNSTI1  "# reg\n"  range(a, 0, 0)
-	reg: CNSTI2  "# reg\n"  range(a, 0, 0)
+	reg: CNSTI2  " reg\n"  range(a, 0, 0)
 	reg: CNSTU1  "# reg\n"  range(a, 0, 0)
 	reg: CNSTU2  "# reg\n"  range(a, 0, 0)
 	reg: CNSTP2  "# reg\n"  range(a, 0, 0)
