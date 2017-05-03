@@ -63,7 +63,7 @@ static int current_seg;
 
 static int double_ptr = 0;
 /*
-generated at Tue May  2 23:18:11 2017
+generated at Wed May  3 21:46:42 2017
 by $Id$
 */
 static void _kids(NODEPTR_TYPE, int, NODEPTR_TYPE[]);
@@ -288,7 +288,7 @@ static char *_templates[] = {
 /* 20 */	"%a",	/* con: CNSTP2 */
 /* 21 */	"\tld16\t%c, %0\n",	/* reg: con */
 /* 22 */	"# reg\n",	/* reg: CNSTI1 */
-/* 23 */	" reg\n",	/* reg: CNSTI2 */
+/* 23 */	"# reg\n",	/* reg: CNSTI2 */
 /* 24 */	"# reg\n",	/* reg: CNSTU1 */
 /* 25 */	"# reg\n",	/* reg: CNSTU2 */
 /* 26 */	"# reg\n",	/* reg: CNSTP2 */
@@ -312,10 +312,10 @@ static char *_templates[] = {
 /* 44 */	"\tla16\t%c,%a\n",	/* reg: ADDRGP2 */
 /* 45 */	"%a ; jaddr",	/* jaddr: ADDRGP2 */
 /* 46 */	"\tshl\t%c, %0, %1 ; [via index]\n",	/* index: LSHI2(reg,con) */
-/* 47 */	"ldw %0(%1), %c\n",	/* reg: INDIRI2(ADDP2(index,reg)) */
+/* 47 */	"\tldw\t%c,%0(%1)\n",	/* reg: INDIRI2(ADDP2(index,reg)) */
 /* 48 */	"\tstb\t%0,%1\n",	/* stmt: ASGNI1(addr,reg) */
 /* 49 */	"\tstb\t%0,%1\n",	/* stmt: ASGNU1(addr,reg) */
-/* 50 */	"\tstb\t%0,%1\n",	/* stmt: ASGNI2(addr,reg) */
+/* 50 */	"\tstw\t%0,%1\n",	/* stmt: ASGNI2(addr,reg) */
 /* 51 */	"\tstw\t%0,%1\n",	/* stmt: ASGNU2(addr,reg) */
 /* 52 */	"\tstw\t%0,%1\n",	/* stmt: ASGNP2(addr,reg) */
 /* 53 */	"\tstb\tr0(%0),%1\n",	/* stmt: ASGNI1(reg,reg) */
@@ -325,9 +325,9 @@ static char *_templates[] = {
 /* 57 */	"\tstw\tr0(%0),%1\n",	/* stmt: ASGNP2(reg,reg) */
 /* 58 */	"\tldb\t%c,%0\n",	/* reg: INDIRI1(addr) */
 /* 59 */	"\tldb\t%c,%0\n",	/* reg: INDIRU1(addr) */
-/* 60 */	"\tldb\t%c,%0\n",	/* reg: INDIRI2(addr) */
-/* 61 */	"\tldb\t%c,%0\n",	/* reg: INDIRU2(addr) */
-/* 62 */	"\tldb\t%c,%0\n",	/* reg: INDIRP2(addr) */
+/* 60 */	"\tldw\t%c,%0\n",	/* reg: INDIRI2(addr) */
+/* 61 */	"\tldw\t%c,%0\n",	/* reg: INDIRU2(addr) */
+/* 62 */	"\tldw\t%c,%0\n",	/* reg: INDIRP2(addr) */
 /* 63 */	"\tldb\t%c,r0(%0)\n",	/* reg: INDIRI1(reg) */
 /* 64 */	"\tldb\t%c,r0(%0)\n",	/* reg: INDIRU1(reg) */
 /* 65 */	"\tldw\t%c,r0(%0)\n",	/* reg: INDIRI2(reg) */
@@ -434,7 +434,7 @@ static char _isinstruction[] = {
 /* 20 */	0,	/* %a */
 /* 21 */	1,	/* \tld16\t%c, %0\n */
 /* 22 */	1,	/* # reg\n */
-/* 23 */	1,	/*  reg\n */
+/* 23 */	1,	/* # reg\n */
 /* 24 */	1,	/* # reg\n */
 /* 25 */	1,	/* # reg\n */
 /* 26 */	1,	/* # reg\n */
@@ -458,10 +458,10 @@ static char _isinstruction[] = {
 /* 44 */	1,	/* \tla16\t%c,%a\n */
 /* 45 */	0,	/* %a ; jaddr */
 /* 46 */	1,	/* \tshl\t%c, %0, %1 ; [via index]\n */
-/* 47 */	1,	/* ldw %0(%1), %c\n */
+/* 47 */	1,	/* \tldw\t%c,%0(%1)\n */
 /* 48 */	1,	/* \tstb\t%0,%1\n */
 /* 49 */	1,	/* \tstb\t%0,%1\n */
-/* 50 */	1,	/* \tstb\t%0,%1\n */
+/* 50 */	1,	/* \tstw\t%0,%1\n */
 /* 51 */	1,	/* \tstw\t%0,%1\n */
 /* 52 */	1,	/* \tstw\t%0,%1\n */
 /* 53 */	1,	/* \tstb\tr0(%0),%1\n */
@@ -471,9 +471,9 @@ static char _isinstruction[] = {
 /* 57 */	1,	/* \tstw\tr0(%0),%1\n */
 /* 58 */	1,	/* \tldb\t%c,%0\n */
 /* 59 */	1,	/* \tldb\t%c,%0\n */
-/* 60 */	1,	/* \tldb\t%c,%0\n */
-/* 61 */	1,	/* \tldb\t%c,%0\n */
-/* 62 */	1,	/* \tldb\t%c,%0\n */
+/* 60 */	1,	/* \tldw\t%c,%0\n */
+/* 61 */	1,	/* \tldw\t%c,%0\n */
+/* 62 */	1,	/* \tldw\t%c,%0\n */
 /* 63 */	1,	/* \tldb\t%c,r0(%0)\n */
 /* 64 */	1,	/* \tldb\t%c,r0(%0)\n */
 /* 65 */	1,	/* \tldw\t%c,r0(%0)\n */

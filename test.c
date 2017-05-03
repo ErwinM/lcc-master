@@ -1,10 +1,5 @@
-
-int adder(int k) {
-	return (k + 5);
-}
-
-int main() {
-	int i;
-	i = adder(3);
-	return 0;
+void func(void) {
+  char c = 'x';
+  int i = c;
+  int *ip = &i;
 }

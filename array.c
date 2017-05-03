@@ -10,6 +10,7 @@ int foo(int i) {
 }
 
 int main() {
-	result = foo(1);
+	int i = 2;
+	result = foo(i);
 	return 0;
 }

@@ -55,6 +55,8 @@ Problems to solve
 
 * arguments larger than a word are not handled properly (they cannot be pushed and need to be copied)
 
+* main does not return correct if there is no local variable set
+
 BP
 --
 LCC doesnt really require a base pointer since it can calculate offsets using the framesize
@@ -63,6 +65,6 @@ However, my imm addressing modes only work of reg5 anyway...
 
 ONCHIP Memory conventions
 -------------------------
-sp -> 1fff to start
+sp -> 2000 to start
 
 

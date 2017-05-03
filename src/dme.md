@@ -237,7 +237,7 @@ static int double_ptr = 0;
   reg: con "\tld16\t%c, %0\n" 2
 
 	reg: CNSTI1  "# reg\n"  range(a, 0, 0)
-	reg: CNSTI2  " reg\n"  range(a, 0, 0)
+	reg: CNSTI2  "# reg\n"  range(a, 0, 0)
 	reg: CNSTU1  "# reg\n"  range(a, 0, 0)
 	reg: CNSTU2  "# reg\n"  range(a, 0, 0)
 	reg: CNSTP2  "# reg\n"  range(a, 0, 0)
@@ -271,11 +271,11 @@ static int double_ptr = 0;
 
 	index: LSHI2(reg, con) "\tshl\t%c, %0, %1 ; [via index]\n" 1
 
-	reg: INDIRI2(ADDP2(index, reg)) "ldw %0(%1), %c\n" 1
+	reg: INDIRI2(ADDP2(index, reg)) "\tldw\t%c,%0(%1)\n" 1
 
   stmt: ASGNI1(addr,reg)  "\tstb\t%0,%1\n"  1
   stmt: ASGNU1(addr,reg)  "\tstb\t%0,%1\n"  1
-  stmt: ASGNI2(addr,reg)  "\tstb\t%0,%1\n"  1
+  stmt: ASGNI2(addr,reg)  "\tstw\t%0,%1\n"  1
   stmt: ASGNU2(addr,reg)  "\tstw\t%0,%1\n"  1
   stmt: ASGNP2(addr,reg)  "\tstw\t%0,%1\n"  1
 
@@ -287,9 +287,9 @@ static int double_ptr = 0;
 
 	reg:  INDIRI1(addr)     "\tldb\t%c,%0\n"  1
   reg:  INDIRU1(addr)     "\tldb\t%c,%0\n"  1
-  reg:  INDIRI2(addr)     "\tldb\t%c,%0\n"  1
-  reg:  INDIRU2(addr)     "\tldb\t%c,%0\n"  1
-  reg:  INDIRP2(addr)     "\tldb\t%c,%0\n"  1
+  reg:  INDIRI2(addr)     "\tldw\t%c,%0\n"  1
+  reg:  INDIRU2(addr)     "\tldw\t%c,%0\n"  1
+  reg:  INDIRP2(addr)     "\tldw\t%c,%0\n"  1
 
 	reg:  INDIRI1(reg)     "\tldb\t%c,r0(%0)\n" 2
 	reg:  INDIRU1(reg)     "\tldb\t%c,r0(%0)\n" 2
