@@ -67,4 +67,12 @@ ONCHIP Memory conventions
 -------------------------
 sp -> 2000 to start
 
+SCRATCH MEMORY
+--------------
+Because I will use some monkey patching code for instructions like mult and div, I need some memory to be able to free a register to work with (and restore before returning).
+
+- i will get 2 reg with the operands. I could use the stack. Prob the most elegant solution.
+- let's try to implement mult
+
+
 

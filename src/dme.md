@@ -269,6 +269,8 @@ static int double_ptr = 0;
 
   jaddr: ADDRGP2  "%a ; jaddr"
 
+	reg: LSHI2(reg, con) "\tshl\t%c, %0, %1\n" 1
+
 	index: LSHI2(reg, con) "\tshl\t%c, %0, %1 ; [via index]\n" 1
 
 	reg: INDIRI2(ADDP2(index, reg)) "\tldw\t%c,%0(%1)\n" 1
@@ -297,10 +299,20 @@ static int double_ptr = 0;
 	reg:  INDIRU2(reg)     "\tldw\t%c,r0(%0)\n" 2
 	reg:  INDIRP2(reg)     "\tldw\t%c,r0(%0)\n" 2
 
-  reg:  CVII2(INDIRI1(addr))     "lb $%c,%0\n"  1
-  reg:  CVUU2(INDIRU1(addr))     "lbu $%c,%0\n"  1
-  reg:  CVUI2(INDIRU1(addr))     "lbu $%c,%0\n"  1
-  reg:  CVUI2(INDIRU2(addr))     "lhu $%c,%0\n"  1
+	reg: CVII1(reg)	"%0" notarget(a)
+	reg: CVIU1(reg)	"%0" notarget(a)
+	reg: CVUI1(reg)	"%0" notarget(a)
+	reg: CVUU1(reg)	"%0" notarget(a)
+
+	reg: CVII2(reg) "%0" notarget(a)
+	reg: CVUU2(reg) "%0" notarget(a)
+	reg: CVIU2(reg) "%0" notarget(a)
+	reg: CVUI2(reg) "%0" notarget(a)
+
+	reg: CVII2(INDIRI1(addr)) "\tldb\t%c, %0\n\tsext\t%c, %c\n" 1
+	reg: CVII2(INDIRU1(addr)) "\tldb\t%c, %0\n" 1
+	reg: CVII2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
+	reg: CVIU2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
 
   reg: DIVI2(reg,reg)  "div $%c,$%0,$%1\n"   1
   reg: DIVU2(reg,reg)  "divu $%c,$%0,$%1\n"  1
@@ -340,7 +352,6 @@ static int double_ptr = 0;
   reg: BORU2(reg,conIR)   "\tor\t%c,%1,%0\n"    1
   reg: BXORU2(reg,conIR)  "\txor\t%c,%1,%0\n"   1
 
-
   reg: BCOMI2(reg)  "not $%c,$%0\n"   1
   reg: BCOMU2(reg)  "not $%c,$%0\n"   1
   reg: NEGI2(reg)   "negu $%c,$%0\n"  1
@@ -352,10 +363,6 @@ static int double_ptr = 0;
   reg: LOADI4(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADP2(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADU4(reg)  "\tmov\t%c,%0\n"  move(a)
-
-  reg: CVII2(reg)  "sll $%c,$%0,8*(4-%a); sra $%c,$%c,8*(4-%a)\n"  2
-  reg: CVUI2(reg)  "and $%c,$%0,(1<<(8*%a))-1\n"  1
-  reg: CVUU2(reg)  "and $%c,$%0,(1<<(8*%a))-1\n"  1
 
   stmt: LABELV  "%a:\n"
   stmt: JUMPV(acon)  "\tbr %0\n"   1
@@ -422,6 +429,7 @@ static void progbeg(int argc, char *argv[]) {
     intreg[R2] = mkreg("r2",R2,1,IREG);
     intreg[R3] = mkreg("r3",R3,1,IREG);
     intreg[R4] = mkreg("r4",R4,1,IREG);
+		intreg[R5] = mkreg("bp",R5,1,IREG);
 
     // Set up sets
     //longwldcrd = mkwildcard(longreg);
@@ -479,6 +487,9 @@ static void segment(int n) {
     else if (n == DATA)
 			// FIXME: 0x1000 is just for LCC retargeting efforts
 			print("\t.data 0x1000\n");
+    else if (n == LIT)
+			// FIXME: 0x1000 is just for LCC retargeting efforts
+			print("\t.data\n");
     else if (n == BSS)
 			print("\t.bss\n");
     else
@@ -519,7 +530,7 @@ static void target(Node p) {
     case RET+P:
       rtarget(p, 0, intreg[R1]);
       break;
-    }
+	}
 }
 
 // Only real registers can be clobbered.  If we've already done a setreg
@@ -540,12 +551,12 @@ static void clobber(Node p) {
 			spill( (1<<R2) | (1<<R3) | (1<<R4), IREG, p);
 	  }
 	  break;
-	//case ASGN+B:
-	//case CALL+V:
-	//case ARG+B:
-	//// always spill both A & B
-	//    spill( (1<<R_B) | (1<<R_A) ,IREG,p);
-	//    break;
+	case ASGN+B:
+	case CALL+V:
+	// case ARG+B:
+// 	// always spill bp and r1 and r2
+// 		spill( (1<<R1) | (1<<R2 | 1<<R5) ,IREG,p);
+// 	  break;
 	//case CALL+B:
 	//// I don't really understand this.  I want to show that
 	//// both A and B are killed, but if I spill A here I get the
@@ -626,18 +637,49 @@ int isfptr(Node n, int iftrue, int iffalse) {
 }
 
 static void emit2(Node p) {
-    int op = specific(p->op);
-
+  switch (p->op) {
+  case ASGN+B: {
+    static int tmpregs[] = { 1, 2, 3 };
+		dalign = 2; // stack is always aligned
+    salign = p->syms[1]->u.c.v.i;
+		// calculate the offset
+		blkcopy(getregnum(p->x.kids[0]), 0,
+            getregnum(p->x.kids[1]), 0,
+            p->syms[0]->u.c.v.i, tmpregs);
+		break;
+  }
+  }
 }
 static void doarg(Node p) {
         assert(p && p->syms[0]);
         mkactual(2, p->syms[0]->u.c.v.i);
 }
 
-// Block operators not needed
-static void blkfetch(int k, int off, int reg, int tmp) {}
-static void blkstore(int k, int off, int reg, int tmp) {}
-static void blkloop(int dreg, int doff, int sreg, int soff,int size, int tmps[]) {}
+// Block operators - building of of SPARC code...
+
+static void blkfetch(int k, int off, int reg, int tmp) {
+  //print("; blkfetch: %d, %d, %d, %d\n", k,reg, off, tmp);
+	assert(k == 1 || k == 2 );
+  assert(salign >= k);
+  if (k == 1)
+  	print("ldb %r%d, %d[%r%d]\n", tmp, off, reg);
+  else // k==2
+    print("ldw %r%d, %d[%r%d]\n", tmp, off, reg);
+}
+
+static void blkstore(int k, int off, int reg, int tmp) {
+	//print("; blkstore: %d, %d\n",k,off);
+	assert(k == 1 || k == 2 );
+  assert(salign >= k);
+  if (k == 1)
+  	print("stb %d[%r%d], r%d\n", off, reg, tmp);
+  else // k==2
+    print("stw %d[%r%d], r%d\n", off, reg, tmp);
+}
+
+static void blkloop(int dreg, int doff, int sreg, int soff,int size, int tmps[]) {
+	print("blkloop\n");
+}
 
 static void local(Symbol p) {
 #if 0
@@ -794,8 +836,8 @@ Interface dmeIR = {
         0, 2, 0,  /* struct */
         0,        /* little_endian */
         0,        /* mulops_calls */
-        1,        /* wants_callb */
-        1,        /* wants_argb */
+        0,        /* wants_callb */
+        0,        /* wants_argb */
         0,        /* left_to_right */
         0,        /* wants_dag */
         0,        /* unsigned_char */

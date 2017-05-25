@@ -1,0 +1,38 @@
+export main
+segment text
+function main type=int function(void) sclass=auto scope=GLOBAL flags=0 ref=0.000000 ncalls=1
+blockbeg off=0
+local u type=unsigned int sclass=register scope=LOCAL flags=0 offset=0 ref=3.000000
+local i type=char sclass=register scope=LOCAL flags=0 offset=4 ref=3.000000
+local r type=unsigned int sclass=auto scope=LOCAL flags=0 offset=8 ref=2.000000
+blockend off=12
+ 2. ADDRLP4 count=2 u
+3. CNSTU4 246
+1' ASGNU4 #2 #3 4 4
+5. ADDRLP4 count=2 i
+8. INDIRU4 count=2 #2
+7. CVUI4 #8 4
+6. CVII1 #7 4
+4' ASGNI1 #5 #6 1 1
+10. ADDRLP4 count=2 r
+13. INDIRI1 #5
+12. CVII4 count=2 #13 1
+11. CVIU4 #12 4
+9' ASGNU4 #10 #11 4 4
+15. ADDRGP4 2
+14' ARGP4 #15 4 4
+16' ARGU4 #8 4 4
+17' ARGI4 #12 4 4
+19. INDIRU4 #10
+18' ARGU4 #19 4 4
+21. ADDRGP4 printf
+20' CALLI4 #21 {int function}
+ 2. CNSTI4 0
+1' RETI4 #2
+ 1:
+maxoff=12
+import printf
+segment lit
+global 2 type=array 38 of char sclass=static scope=GLOBAL flags=generated ref=1.000000
+defstring "u(%d) was cast into i(%d) and r(%d)\012\012\000"
+progend

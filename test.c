@@ -1,5 +1,9 @@
-void func(void) {
-  char c = 'x';
-  int i = c;
-  int *ip = &i;
+int main(void) {
+
+	int i;
+	signed char c;
+
+	c = -10;
+	i = (int)c;
+
 }

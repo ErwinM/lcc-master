@@ -148,9 +148,11 @@ static void blkunroll(int k, int dreg, int doff, int sreg, int soff, int size, i
 	int i;
 
 	assert(IR->x.max_unaligned_load);
-	if (k > IR->x.max_unaligned_load
-	&& (k > salign || k > dalign))
+	print("; k: %d, max: %d, salign: %d, dalign: %d\n", k, IR->x.max_unaligned_load, salign, dalign);
+	if (k > IR->x.max_unaligned_load && (k > salign || k > dalign)) {
 		k = IR->x.max_unaligned_load;
+	}
+	//print("post-k: %d\n", k);
 	for (i = 0; i+k < size; i += 2*k) {
 		(*IR->x.blkfetch)(k, soff+i,   sreg, tmp[0]);
 		(*IR->x.blkfetch)(k, soff+i+k, sreg, tmp[1]);
