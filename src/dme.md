@@ -528,6 +528,8 @@ static void target(Node p) {
 		case MOD+U:
 		// limit register usage for pseudo ops
 		  setreg(p, intreg[R1]);
+			rtarget(p->kids[0], 0 intreg[R2]);
+			rtarget(p->kids[1], 0 intreg[R3]);
 			break;
     case CNST+I:
     case CNST+U:
