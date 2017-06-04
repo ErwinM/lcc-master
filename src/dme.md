@@ -209,10 +209,6 @@ static int double_ptr = 0;
   reg:  INDIRI2(VREGP)     "# read register\n"
   reg:  INDIRU2(VREGP)     "# read register\n"
 
-  reg:  INDIRI4(VREGP)     "# read register\n"
-  reg:  INDIRU4(VREGP)     "# read register\n"
-
-
   reg:  INDIRP2(VREGP)     "# read register\n"
 
   stmt: ASGNI1(VREGP,reg)  "# write register\n"
@@ -220,9 +216,7 @@ static int double_ptr = 0;
 
   stmt: ASGNI2(VREGP,reg)  "# write register\n"
   stmt: ASGNU2(VREGP,reg)  "# write register\n"
-
-  stmt: ASGNI4(VREGP,reg)  "# write register\n"
-  stmt: ASGNU4(VREGP,reg)  "# write register\n"
+  stmt: ASGNP2(VREGP,reg)  "# write register\n"
 
   con: CNSTI1  "%a"
   con: CNSTU1  "%a"
@@ -230,8 +224,6 @@ static int double_ptr = 0;
   con: CNSTI2  "%a"
   con: CNSTU2  "%a"
 
-  con: CNSTI4  "%a"
-  con: CNSTU4  "%a"
   con: CNSTP2  "%a"
 
   reg: con "\tld16\t%c, %0\n" 2
@@ -264,16 +256,30 @@ static int double_ptr = 0;
   addr: ADDRFP2  "%a(bp)" range(a, -63, 63)
   addr: ADDRLP2  "%a(bp)" range(a, -63, 63)
 
-	reg: ADDRLP2 "\tla16\t%c, %a\n\tadd\t%c, %c, bp\n" 2
+	reg: ADDRFP2 "\tldi\t%c, %a\n\tadd\t%c, %c, bp\n" 2
+	reg: ADDRLP2 "\tldi\t%c, %a\n\tadd\t%c, %c, bp\n" 2
   reg: ADDRGP2  "\tla16\t%c,%a\n" 1
 
   jaddr: ADDRGP2  "%a ; jaddr"
 
 	reg: LSHI2(reg, con) "\tshl\t%c, %0, %1\n" 1
+	reg: LSHU2(reg, con) "\tshl\t%c, %0, %1\n" 1
+
+	reg: RSHU2(reg, con) "\tshr\t%c, %0, %1\n" 1
+
+	reg: LSHI2(reg, reg) "\tshl.r\t%c, %0, %1\n" 1
+	reg: LSHU2(reg, reg) "\tshl.r\t%c, %0, %1\n" 1
+
+	reg: RSHU2(reg, reg) "\tshr.r\t%c, %0, %1\n" 1
 
 	index: LSHI2(reg, con) "\tshl\t%c, %0, %1 ; [via index]\n" 1
+	index: LSHU2(reg, con) "\tshl\t%c, %0, %1 ; [via index]\n" 1
+	index: RSHU2(reg, con) "\tshr\t%c, %0, %1 ; [via index]\n" 1
+
+	stmt: ASGNU2(ADDP2(index, reg), reg) "\tstw\t%0(%1),%2\n" 1
 
 	reg: INDIRI2(ADDP2(index, reg)) "\tldw\t%c,%0(%1)\n" 1
+	reg: INDIRU2(ADDP2(index, reg)) "\tldw\t%c,%0(%1)\n" 1
 
   stmt: ASGNI1(addr,reg)  "\tstb\t%0,%1\n"  1
   stmt: ASGNU1(addr,reg)  "\tstb\t%0,%1\n"  1
@@ -309,17 +315,22 @@ static int double_ptr = 0;
 	reg: CVIU2(reg) "%0" notarget(a)
 	reg: CVUI2(reg) "%0" notarget(a)
 
+	reg: CVPU2(reg) "%0" notarget(a)
+
 	reg: CVII2(INDIRI1(addr)) "\tldb\t%c, %0\n\tsext\t%c, %c\n" 1
 	reg: CVII2(INDIRU1(addr)) "\tldb\t%c, %0\n" 1
 	reg: CVII2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
 	reg: CVIU2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
 
-  reg: DIVI2(reg,reg)  "div $%c,$%0,$%1\n"   1
-  reg: DIVU2(reg,reg)  "divu $%c,$%0,$%1\n"  1
-  reg: MODI2(reg,reg)  "rem $%c,$%0,$%1\n"   1
-  reg: MODU2(reg,reg)  "remu $%c,$%0,$%1\n"  1
-  reg: MULI2(reg,reg)  "mul $%c,$%0,$%1\n"   1
-  reg: MULU2(reg,reg)  "mul $%c,$%0,$%1\n"   1
+  reg: DIVI2(reg,reg)  "DIV16(%c,%0,%1)\n"   1
+  reg: DIVU2(reg,reg)  "DIV16(%c,%0,%1)\n"  1
+  reg: MODI2(reg,reg)  "MOD16(%c,%0,%1)\n"  1
+  reg: MODU2(reg,reg)  "MOD16(%c,%0,%1)\n"  1
+
+	reg: MULI2(reg,reg)  "MULT16(%c,%0,%1)\n"   1
+
+	reg: MULU2(reg,reg)  "mul $%c,$%0,$%1\n"   1
+
 
   reg: ADDI2(reg,reg)   "\tadd\t%c,%0,%1\n"  1
   reg: ADDP2(reg,reg)   "\tadd\t%c,%0,%1\n"  1
@@ -337,55 +348,53 @@ static int double_ptr = 0;
   reg: SUBP2(reg,conIR)   "\tsubi\t%c,%0,%1\n"  1
   reg: SUBU2(reg,conIR)   "\tsubi\t%c,%0,%1\n"  1
 
-  reg: BANDI2(reg,reg)  "\tand\t%c,$%0,%1\n"   1
-  reg: BORI2(reg,reg)   "\tor\t%c,$%0,%1\n"    1
-  reg: BXORI2(reg,reg)  "\txor\t%c,$%0,%1\n"   1
-  reg: BANDU2(reg,reg)  "\tand\t%c,$%0,%1\n"   1
-  reg: BORU2(reg,reg)   "\tor\t%c,$%0,%1\n"    1
-  reg: BXORU2(reg,reg)  "\txor\t%c,$%0,%1\n"   1
+  reg: BANDI2(reg,reg)  "\tand\t%c,%0,%1\n"   1
+  reg: BORI2(reg,reg)   "\tor\t%c,%0,%1\n"    1
+  reg: BXORI2(reg,reg)  "\txor\t%c,%0,%1\n"   1
+  reg: BANDU2(reg,reg)  "\tand\t%c,%0,%1\n"   1
+  reg: BORU2(reg,reg)   "\tor\t%c,%0,%1\n"    1
+  reg: BXORU2(reg,reg)  "\txor\t%c,%0,%1\n"   1
 
 
-  reg: BANDI2(reg,conIR)  "\tand\t%c,%1,%0\n"   1
-  reg: BORI2(reg,conIR)   "\tor\t%c,%1,%0\n"    1
-  reg: BXORI2(reg,conIR)  "\txor\t%c,%1,%0\n"   1
-  reg: BANDU2(reg,conIR)  "\tand\t%c,%1,%0\n"   1
-  reg: BORU2(reg,conIR)   "\tor\t%c,%1,%0\n"    1
-  reg: BXORU2(reg,conIR)  "\txor\t%c,%1,%0\n"   1
+  reg: BANDI2(reg,conIR)  "\tandi\t%c,%0,%1\n"   1
+  reg: BORI2(reg,conIR)   "\tori\t%c,%0,%1\n"    1
+  reg: BXORI2(reg,conIR)  "\txor\t%c,%0,%1\n"   1
+  reg: BANDU2(reg,conIR)  "\tandi\t%c,%0,%1\n"   1
+  reg: BORU2(reg,conIR)   "\tori\t%c,%0,%1\n"    1
+  reg: BXORU2(reg,conIR)  "\txor\t%c,%0,%1\n"   1
 
   reg: BCOMI2(reg)  "not $%c,$%0\n"   1
   reg: BCOMU2(reg)  "not $%c,$%0\n"   1
-  reg: NEGI2(reg)   "negu $%c,$%0\n"  1
+  reg: NEGI2(reg)   "sub\t%c,r0,%c\n"  1
 
 	reg: LOADI1(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADU1(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADI2(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADU2(reg)  "\tmov\t%c,%0\n"  move(a)
-  reg: LOADI4(reg)  "\tmov\t%c,%0\n"  move(a)
   reg: LOADP2(reg)  "\tmov\t%c,%0\n"  move(a)
-  reg: LOADU4(reg)  "\tmov\t%c,%0\n"  move(a)
 
   stmt: LABELV  "%a:\n"
   stmt: JUMPV(acon)  "\tbr %0\n"   1
   stmt: JUMPV(reg)   "\tbr.r %0\n" 1
 
-  stmt: EQI2(reg,reg)  "beq $%0,$%1,%a\n"   1
-  stmt: EQU2(reg,reg)  "beq $%0,$%1,%a\n"   1
+  stmt: EQI2(reg,reg)  "\tskip.ne\t%0,%1\n\tbr\t%a\n"   1
+  stmt: EQU2(reg,reg)  "\tskip.ne\t%0,%1\n\tbr\t%a\n"   1
   stmt: GEI2(reg,reg)  "\tskip.lt %0, %1\n\tbr %a\n"   1
   stmt: GEU2(reg,reg)  "bgeu $%0,$%1,%a\n"  1
   stmt: GTI2(reg,reg)  "bgt $%0,$%1,%a\n"   1
   stmt: GTU2(reg,reg)  "bgtu $%0,$%1,%a\n"  1
-  stmt: LEI2(reg,reg)  "ble $%0,$%1,%a\n"   1
+  stmt: LEI2(reg,reg)  "\tskip.gt\t%0,%1\n\tbr.r\t%a\n"   1
   stmt: LEU2(reg,reg)  "bleu $%0,$%1,%a\n"  1
   stmt: LTI2(reg,reg)  "blt $%0,$%1,%a\n"   1
-  stmt: LTU2(reg,reg)  "bltu $%0,$%1,%a\n"  1
-  stmt: NEI2(reg,reg)  "bne $%0,$%1,%a\n"   1
-  stmt: NEU2(reg,reg)  "bne $%0,$%1,%a\n"   1
+  stmt: LTU2(reg,reg)  "skip.ult\t%1,%0\n\tbr.r\t%a\n"  1
+  stmt: NEI2(reg,reg)  "\tskip.eq %0,%1\n\tbr %a\n"   1
+  stmt: NEU2(reg,reg)  "\tskip.eq %0,%1\n\tbr %a\n"   1
 
 
-  reg:  CALLI2(jaddr)  "\taddi\tr1,pc,2\n\tbr\t%0\n"  1
-  reg:  CALLP2(jaddr)  "jal %0\n"  1
+  reg:  CALLI2(jaddr)  "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 1
+  reg:  CALLP2(jaddr)  "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 1
   reg:  CALLU2(jaddr)  "\tBRANCH UNSIGNED\n"  1
-  stmt: CALLV(jaddr)  "jal %0\n"  1
+  stmt: CALLV(jaddr)   "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 1
 
   stmt: RETI2(reg)  "# ret\n"  1
   stmt: RETU2(reg)  "# ret\n"  1
@@ -445,13 +454,14 @@ static void progbeg(int argc, char *argv[]) {
     //print("\n");
     print(";	DME assembly file, generated by lcc 4.2\n");
     print("\n");
-    print(";  temp boiler plate puts SP at 0x2000 and branches to main\n");
-    print("\tld16\tr1, 0x2000\n");
-    print("\tmov\tsp, r1\n");
-    print("\taddi\tr1, pc, 2\n");
-    print("\tbr\t_main\n");
-    print("\thlt\n");
-    print("\n\n");
+		print(" ; INT_MAX: %x", UINT_MAX);
+		// print(";  temp boiler plate puts SP at 0x2000 and branches to main\n");
+//     print("\tld16\tr1, 0x2000\n");
+//     print("\tmov\tsp, r1\n");
+//     print("\taddi\tr1, pc, 2\n");
+//     print("\tbr\t_main\n");
+//     print("\thlt\n");
+//print("\n\n");
 /*
  * FIXME - enable this when we have a linker
     print("	.extern	$global$\n");
@@ -511,6 +521,14 @@ static void target(Node p) {
     assert(p);
 
     switch (specific(p->op)) {
+		case MUL+I:
+		case DIV+I:
+		case DIV+U:
+		case MOD+I:
+		case MOD+U:
+		// limit register usage for pseudo ops
+		  setreg(p, intreg[R1]);
+			break;
     case CNST+I:
     case CNST+U:
     case CNST+P:
@@ -528,7 +546,7 @@ static void target(Node p) {
     case RET+I:
     case RET+U:
     case RET+P:
-      rtarget(p, 0, intreg[R1]);
+		  rtarget(p, 0, intreg[R1]);
       break;
 	}
 }
@@ -540,6 +558,13 @@ static void clobber(Node p) {
   assert(p);
 
 	switch(specific(p->op)) {
+	case MUL+I:
+	case DIV+I:
+	case DIV+U:
+	case MOD+I:
+	case MOD+U:
+		spill( (1<<R2) | (1<<R3) | (1<<R4), IREG, p);
+		break;
 	case CALL+I:
 	case CALL+P:
 	case CALL+U:
@@ -780,15 +805,15 @@ static void address(Symbol q, Symbol p, long n) {
 
 static void defconst(int suffix, int size, Value v) {
         if (suffix == I && size == 1)
-                print("	.defb 0x%x\n",   v.u & 0xff);
+                print("defb 0x%x\n",   v.u & 0xff);
         else if (suffix == I && size == 2)
-                print("	defw 0x%x\n",   v.i & 0xffff);
+                print("defw 0x%x\n",   v.i & 0xffff);
         else if (suffix == U && size == 1)
-                print("	.defb 0x%x\n", v.u & 0xff);
+                print("defb 0x%x\n", v.u & 0xff);
         else if (suffix == U && size == 2)
-                print("	.defw 0x%x\n",   v.i & 0xffff);
+                print("defw 0x%x\n",   v.i & 0xffff);
         else if (suffix == P && size == 2)
-                print("	.defw 0x%x\n", v.u & 0xffff);
+                print("defw 0x%x\n", v.u & 0xffff);
         else assert(0);
 }
 
@@ -797,9 +822,10 @@ static void defaddress(Symbol p) {
 }
 
 static void defstring(int n, char *str) {
-        char *s;
-        for (s = str; s < str + n; s++)
-                print("	.defb %d\n", (*s)&0377);
+	char *s;
+	print("\tdefstr %c%s%c\n", '"', str, '"');
+	//for (s = str; s < str + n; s++)
+	//	print("	.defb %d\n", (*s)&0377);
 }
 
 static void export(Symbol p) {
@@ -814,12 +840,12 @@ static void global(Symbol p) {
         //assert(p->type->align == 1);
         print("%s:\n", p->x.name);
         if (p->u.seg == BSS)
-                print("	.defs %d\n", p->type->size);
+                print("	defs %d\n", p->type->size);
 }
 
 static void space(int n) {
         if (current_seg != BSS)
-                print("	.defs %d\n", n);
+                print("	defs %d\n", n);
 }
 
 
