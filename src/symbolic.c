@@ -435,23 +435,23 @@ static void I(stabsym)(Symbol p) {}
 static void I(stabtype)(Symbol p) {}
 
 Interface symbolicIR = {
-	1, 1, 0,	/* char */
-	2, 2, 0,	/* short */
-	4, 4, 0,	/* int */
-	4, 4, 0,	/* long */
-	4, 4, 0,	/* long long */
-	4, 4, 1,	/* float */
-	8, 8, 1,	/* double */
-	8, 8, 1,	/* long double */
-	4, 4, 0,	/* T* */
-	0, 4, 0,	/* struct */
-	0,		/* little_endian */
-	0,		/* mulops_calls */
-	0,		/* wants_callb */
-	1,		/* wants_argb */
-	1,		/* left_to_right */
-	1,		/* wants_dag */
-	0,		/* unsigned_char */
+  1, 1, 0,  /* char */
+  2, 2, 0,  /* short */
+  2, 2, 0,  /* int */
+  4, 2, 1,  /* long */
+  4, 2, 1,  /* long long */
+  4, 2, 1,  /* float */
+  8, 2, 1,  /* double */
+  8, 2, 1,  /* long double */
+  2, 2, 0,  /* T * */
+  0, 2, 0,  /* struct */
+  0,        /* little_endian */
+  0,        /* mulops_calls */
+  0,        /* wants_callb */
+  0,        /* wants_argb */
+  0,        /* left_to_right */
+  0,        /* wants_dag */
+  0,        /* unsigned_char */
 	I(address),
 	I(blockbeg),
 	I(blockend),
