@@ -392,11 +392,12 @@ static int double_ptr = 0;
   stmt: GTI2(reg,reg)  "\tskip.lte\t%0,%1\n\tbr\t%a\n"   1
   stmt: GTU2(reg,reg)  "\tskip.ulte\t%0,%1\n\tbr\t%a\n"  1
   stmt: LEI2(reg,reg)  "\tskip.gt\t%0,%1\n\tbr\t%a\n"   1
-  stmt: LEU2(reg,reg)  "bleu $%0,$%1,%a\n"  1
   stmt: LTI2(reg,reg)  "\tskip.gte\t%0,%1\n\tbr\t%a\n"   1
-  stmt: LTU2(reg,reg)  "\tskip.ult\t%1,%0\n\tbr\t%a\n"  1
   stmt: NEI2(reg,reg)  "\tskip.eq %0,%1\n\tbr %a\n"   1
   stmt: NEU2(reg,reg)  "\tskip.eq %0,%1\n\tbr %a\n"   1
+
+	stmt: LEU2(reg,reg)  "\tskip.ult\t%1,%0\n\tbr\t%a\n"  1
+	stmt: LTU2(reg,reg)  "\tskip.ulte\t%1,%0\n\tbr\t%a\n"  1
 
   reg:  CALLI2(jaddr)  "# let emit2 handle\n" 1
   reg:  CALLP2(jaddr)  "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 2

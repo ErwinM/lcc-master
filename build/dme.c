@@ -62,7 +62,7 @@ static int current_seg;
 
 static int double_ptr = 0;
 /*
-generated at Fri Jul 14 13:20:49 2017
+generated at Sat Jul 22 21:16:17 2017
 by $Id$
 */
 static void _kids(NODEPTR_TYPE, int, NODEPTR_TYPE[]);
@@ -419,9 +419,9 @@ static char *_templates[] = {
 /* 136 */	"\tskip.lte\t%0,%1\n\tbr\t%a\n",	/* stmt: GTI2(reg,reg) */
 /* 137 */	"\tskip.ulte\t%0,%1\n\tbr\t%a\n",	/* stmt: GTU2(reg,reg) */
 /* 138 */	"\tskip.gt\t%0,%1\n\tbr\t%a\n",	/* stmt: LEI2(reg,reg) */
-/* 139 */	"bleu $%0,$%1,%a\n",	/* stmt: LEU2(reg,reg) */
+/* 139 */	"\tskip.ult\t%1,%0\n\tbr\t%a\n",	/* stmt: LEU2(reg,reg) */
 /* 140 */	"\tskip.gte\t%0,%1\n\tbr\t%a\n",	/* stmt: LTI2(reg,reg) */
-/* 141 */	"\tskip.ult\t%1,%0\n\tbr\t%a\n",	/* stmt: LTU2(reg,reg) */
+/* 141 */	"\tskip.ulte\t%1,%0\n\tbr\t%a\n",	/* stmt: LTU2(reg,reg) */
 /* 142 */	"\tskip.eq %0,%1\n\tbr %a\n",	/* stmt: NEI2(reg,reg) */
 /* 143 */	"\tskip.eq %0,%1\n\tbr %a\n",	/* stmt: NEU2(reg,reg) */
 /* 144 */	"# let emit2 handle\n",	/* reg: CALLI2(jaddr) */
@@ -580,9 +580,9 @@ static char _isinstruction[] = {
 /* 136 */	1,	/* \tskip.lte\t%0,%1\n\tbr\t%a\n */
 /* 137 */	1,	/* \tskip.ulte\t%0,%1\n\tbr\t%a\n */
 /* 138 */	1,	/* \tskip.gt\t%0,%1\n\tbr\t%a\n */
-/* 139 */	1,	/* bleu $%0,$%1,%a\n */
+/* 139 */	1,	/* \tskip.ult\t%1,%0\n\tbr\t%a\n */
 /* 140 */	1,	/* \tskip.gte\t%0,%1\n\tbr\t%a\n */
-/* 141 */	1,	/* \tskip.ult\t%1,%0\n\tbr\t%a\n */
+/* 141 */	1,	/* \tskip.ulte\t%1,%0\n\tbr\t%a\n */
 /* 142 */	1,	/* \tskip.eq %0,%1\n\tbr %a\n */
 /* 143 */	1,	/* \tskip.eq %0,%1\n\tbr %a\n */
 /* 144 */	1,	/* # let emit2 handle\n */
