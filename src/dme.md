@@ -263,8 +263,6 @@ static int double_ptr = 0;
 	reg: ADDRLP2 "\tldi\t%c, %a\n\tadd\t%c, %c, bp\n" 2
   reg: ADDRGP2  "\tla16\t%c,%a\n" 1
 
-  jaddr: ADDRGP2  "%a ; jaddr"
-
 	reg: LSHI2(reg, con) "\tshl\t%c, %0, %1\n" 1
 	reg: LSHU2(reg, con) "\tshl\t%c, %0, %1\n" 1
 
@@ -399,10 +397,10 @@ static int double_ptr = 0;
 	stmt: LEU2(reg,reg)  "\tskip.ult\t%1,%0\n\tbr\t%a\n"  1
 	stmt: LTU2(reg,reg)  "\tskip.ulte\t%1,%0\n\tbr\t%a\n"  1
 
-  reg:  CALLI2(jaddr)  "# let emit2 handle\n" 1
-  reg:  CALLP2(jaddr)  "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 2
-  reg:  CALLU2(jaddr)  "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 2
-  stmt: CALLV(jaddr)   "\tla16\tr2,%0\n\taddi\tr1,pc,2\n\tbr.r\tr2\n" 2
+  reg:  CALLI2(reg)  "# let emit2 handle\n" 1
+  reg:  CALLP2(reg)  "# let emit2 handle\n" 1
+  reg:  CALLU2(reg)  "# let emit2 handle\n" 1
+  stmt: CALLV(reg)   "# let emit2 handle\n" 1
 
   stmt: RETI2(reg)  "# ret\n"  1
   stmt: RETU2(reg)  "# ret\n"  1
@@ -665,11 +663,13 @@ int isfptr(Node n, int iftrue, int iffalse) {
 }
 
 static void emit2(Node p) {
-  //print("emit2: %d", p->op);
 	switch (specific(p->op)) {
-	case CALL+I: // CALLI
-		print("\tla16\tr2,%s\n", p->kids[0]->syms[0]->x.name);
-		print("\taddi\tr1,pc,2\n\tbr.r\tr2\n");
+	case CALL+I:
+	case CALL+U:
+	case CALL+P:
+	case CALL+V:
+		print("\taddi\tr1,pc,2\n");
+		print("\tbr.r\t%s\n", p->kids[0]->syms[RX]->x.name);
 		if(p->syms[0]->u.c.v.i != 0) {
 			print("\tldi\tr2,%d\n", p->syms[0]->u.c.v.i);
 			print("\tadd\tsp,sp,r2\n");
@@ -834,7 +834,7 @@ static void defconst(int suffix, int size, Value v) {
 }
 
 static void defaddress(Symbol p) {
-  print("	DEFADDRESS - defw %s\n", p->x.name);
+  print("\tdefw %s ; DEFADDRESS\n", p->x.name);
 }
 
 static void defstring(int n, char *str) {
