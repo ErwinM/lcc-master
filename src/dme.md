@@ -323,10 +323,17 @@ static int double_ptr = 0;
 
 	reg: CVPU2(reg) "%0" notarget(a)
 
-	reg: CVII2(INDIRI1(addr)) "\tldb\t%c, %0\n\tsext\t%c, %c\n" 1
-	reg: CVII2(INDIRU1(addr)) "\tldb\t%c, %0\n" 1
-	reg: CVII2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
-	reg: CVIU2(INDIRI2(addr))	"\tldw\t%c, %0\n" 1
+	reg: CVUI4(reg) "%0 ; FIXME: CVUI4" 1
+
+	reg: CVII2(INDIRI1(addr)) "\tldb\t%c,%0\n\tsext\t%c,%c\n" 1
+	reg: CVII2(INDIRU1(addr)) "\tldb\t%c,%0\n" 1
+	reg: CVII2(INDIRI2(addr))	"\tldw\t%c,%0\n" 1
+	reg: CVIU2(INDIRI2(addr))	"\tldw\t%c,%0\n" 1
+
+	reg: CVII2(INDIRI1(reg)) "\tldb\t%c,r0(%0)\n\tsext\t%c,%c\n" 1
+	reg: CVII2(INDIRU1(reg)) "\tldb\t%c,r0(%0)\n" 1
+	reg: CVII2(INDIRI2(reg)) "\tldw\t%c,r0(%0)\n" 1
+	reg: CVIU2(INDIRI2(reg)) "\tldw\t%c,r0(%0)\n" 1
 
   reg: DIVI2(reg,reg)  "DIV16(%c,%0,%1)\n"   1
   reg: DIVU2(reg,reg)  "DIV16(%c,%0,%1)\n"  1

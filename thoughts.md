@@ -75,4 +75,6 @@ Because I will use some monkey patching code for instructions like mult and div,
 - let's try to implement mult
 
 
-
+List of "TO FIX":
+-----------------
+- CVUI4 is not actually converting but a stub to make code compile atm
